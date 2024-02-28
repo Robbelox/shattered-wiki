@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.logo > img {
+.logo>img {
     height: 80px;
     width: 80px;
     margin: 0 .5em;
@@ -41,14 +41,16 @@
 }
 
 .dropdown-content a:hover {
-    background-color:lightsalmon;
-    color: black; /* Change text color to black when hovered over */
+    background-color: lightsalmon;
+    color: black;
+    /* Change text color to black when hovered over */
     border-radius: 10px;
 }
 
 .dropdown-toggle:hover,
 .dropdown:hover .dropdown-toggle {
-    color: orange; /* Change text color to black when hovered over or when the dropdown menu is active */
+    color: orange;
+    /* Change text color to black when hovered over or when the dropdown menu is active */
 }
 
 /* Selection Grids */
@@ -84,8 +86,8 @@
     text-align: center;
 }
 
-.selection-tile > img,
-.character-selection-tile > img {
+.selection-tile>img,
+.character-selection-tile>img {
     aspect-ratio: 1/1;
     object-fit: cover;
     max-width: 100%;
@@ -121,8 +123,8 @@
 }
 
 h1 {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 ul {

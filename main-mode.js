@@ -1,5 +1,5 @@
 // Function to toggle between dark and light mode
-  function toggleDarkMode() {
+function toggleDarkMode() {
     const themeLink = document.getElementById('theme-link');
     if (themeLink.getAttribute('href') === 'css_dark.css') {
         themeLink.setAttribute('href', 'css_light.css');
@@ -13,7 +13,7 @@
 }
 
 // Check for mode in localStorage on page load
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
     const savedMode = localStorage.getItem('mode');
     const themeLink = document.getElementById('theme-link');
     if (savedMode === 'css_dark') {

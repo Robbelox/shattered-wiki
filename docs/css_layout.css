@@ -1,0 +1,142 @@
+.header {
+    padding: 0 .3em;
+    display: grid;
+    grid-template-columns: 6.5em 9fr 1fr;
+    cursor: default;
+    align-items: center;
+}
+
+.logo > img {
+    height: 80px;
+    width: 80px;
+    margin: 0 .5em;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: transparent;
+    min-width: 160px;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 0.5em 0;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color:lightsalmon;
+    color: black; /* Change text color to black when hovered over */
+    border-radius: 10px;
+}
+
+.dropdown-toggle:hover,
+.dropdown:hover .dropdown-toggle {
+    color: orange; /* Change text color to black when hovered over or when the dropdown menu is active */
+}
+
+/* Selection Grids */
+
+.selection-container {
+    display: grid;
+    margin: auto;
+    padding: 6% 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+    place-items: center;
+}
+
+.selection-tile {
+    display: inline-block;
+    max-height: 33vh;
+    margin: 5%;
+    aspect-ratio: 1/1;
+    border-radius: 30%;
+    padding: 1%;
+    position: relative;
+    text-align: center;
+}
+
+.character-selection-tile {
+    display: inline-block;
+    max-height: 20vh;
+    margin: 5%;
+    aspect-ratio: 1/1;
+    border-radius: 30%;
+    padding: 1%;
+    position: relative;
+    text-align: center;
+}
+
+.selection-tile > img,
+.character-selection-tile > img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    max-width: 100%;
+    justify-content: center;
+    border-radius: 30%;
+}
+
+.tile-text {
+    position: absolute;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Light & Dark Mode */
+
+.mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+/* Defaults */
+
+* {
+    text-decoration: none;
+}
+
+h1 {
+    margin:0;
+    padding:0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 1em
+}
+
+.large-font {
+    font-size: xx-large;
+}
+
+.super-large-font {
+    font-size: xxx-large;
+}

@@ -1,0 +1,20 @@
+body {
+    background: rgb(40, 40, 40);
+    color: white;
+}
+
+.header {
+    background: rgb(30,30,30);
+}
+
+a {
+    color: white;
+}
+
+.dropdown-content a {
+    color: white;
+}
+
+.selection-tile {
+    background: black;
+}

@@ -130,6 +130,8 @@ class Unmined {
             projection: dataProjection
         });
 
+        const centerCoordinates = ol.proj.transform([-4500, 0], 'EPSG:4326', viewProjection);
+
         var map = new ol.Map({
             target: mapId,
             controls: ol.control.defaults().extend([
@@ -148,7 +150,7 @@ class Unmined {
 
             ],
             view: new ol.View({
-                center: [0, 0],
+                center: centerCoordinates,
                 extent: mapExtent,
                 projection: viewProjection,
                 resolutions: tileGrid.getResolutions(),

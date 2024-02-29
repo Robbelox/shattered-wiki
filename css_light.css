@@ -21,4 +21,5 @@ a {
 
 .tile-text {
     color: rgb(161, 135, 128);
+    text-shadow: 0px 2px white, 0px -2px white, 2px 0px white, -2px 0px white;
 }

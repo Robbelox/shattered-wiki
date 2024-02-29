@@ -87,6 +87,7 @@
 }
 
 .selection-tile>img,
+.selection-tile>a>img,
 .character-selection-tile>img {
     aspect-ratio: 1/1;
     object-fit: cover;

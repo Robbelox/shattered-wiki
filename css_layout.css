@@ -64,6 +64,7 @@
 
 .selection-tile {
     display: inline-flex;
+    min-height: 20vh;
     max-height: 33vh;
     margin: 5%;
     aspect-ratio: 1/1;
@@ -100,6 +101,16 @@
     top: 0%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.back {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
 
 /* Light & Dark Mode */

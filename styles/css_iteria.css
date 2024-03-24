@@ -1,6 +1,6 @@
 .dropdown-toggle:hover,
 .dropdown:hover .dropdown-toggle {
-    color: magenta;
+    color: rgb(255, 135, 255);
     /* Change text color to black when hovered over or when the dropdown menu is active */
 }
 

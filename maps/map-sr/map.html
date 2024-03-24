@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>SR</title>
+    <title>Wiki | SR | Map</title>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="players.js"></script>
 
     <!-- Custom markers -->
-    <script type="text/javascript" src="custom.markers.js"></script>
+    <script type="text/javascript" src="markers.js"></script>
 
     <!-- uNmINeD JS -->
     <script type="text/javascript" src="openlayers.js"></script>
@@ -69,7 +69,7 @@
 
     <script type="text/javascript">
 
-        document.title = UnminedMapProperties.worldName + " - " + document.title;
+        document.title = document.title;
 
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
@@ -84,6 +84,7 @@
         unmined.map('map', UnminedMapProperties, UnminedRegions);
 
     </script>
+    
 </body>
 
 </html>

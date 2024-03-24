@@ -1,14 +1,14 @@
 // Function to toggle between dark and light mode
 function toggleDarkMode() {
     const themeLink = document.getElementById('theme-link');
-    if (themeLink.getAttribute('href') === '../css_dark.css') {
-        themeLink.setAttribute('href', '../css_light.css');
+    if (themeLink.getAttribute('href') === '/styles/css_dark.css') {
+        themeLink.setAttribute('href', '/styles/css_light.css');
         document.querySelector('.mode-toggle').innerHTML = '☀️';
-        localStorage.setItem('mode', '../css_light');
+        localStorage.setItem('mode', 'light');
     } else {
-        themeLink.setAttribute('href', '../css_dark.css');
+        themeLink.setAttribute('href', '/styles/css_dark.css');
         document.querySelector('.mode-toggle').innerHTML = '🌙';
-        localStorage.setItem('mode', '../css_dark');
+        localStorage.setItem('mode', 'dark');
     }
 }
 
@@ -16,11 +16,11 @@ function toggleDarkMode() {
 function applySavedMode() {
     const savedMode = localStorage.getItem('mode');
     const themeLink = document.getElementById('theme-link');
-    if (savedMode === '../css_dark') {
-        themeLink.setAttribute('href', '../css_dark.css');
+    if (savedMode === 'dark') {
+        themeLink.setAttribute('href', '/styles/css_dark.css');
         document.querySelector('.mode-toggle').innerHTML = '🌙';
     } else {
-        themeLink.setAttribute('href', '../css_light.css');
+        themeLink.setAttribute('href', '/styles/css_light.css');
         document.querySelector('.mode-toggle').innerHTML = '☀️';
     }
 }

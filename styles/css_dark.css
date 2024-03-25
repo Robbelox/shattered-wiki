@@ -11,15 +11,29 @@ a {
     color: white;
 }
 
-.dropdown-content a {
-    color: white;
+.dropdown-content {
+    background: rgb(30, 30, 30);
 }
 
 .selection-tile {
-    background: rgb(16, 16, 16);
+    background: rgb(30, 30, 30);
 }
 
-.tile-text {
+.tile-text,
+.lower-tile-text {
     color: white;
     text-shadow: 0px 2px black, 0px -2px black, 2px 0px black, -2px 0px black;
+}
+
+.text-box {
+    color: antiquewhite;
+}
+
+.text-box > h1 {
+    color: rgb(245, 209, 161);
+}
+
+.text-box > h2,
+.yellow {
+    color: rgb(255, 234, 169);
 }

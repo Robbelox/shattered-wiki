@@ -6,8 +6,8 @@
     <script src="scripts/mode.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiki | SR</title>
-    <link rel="icon" type="image/x-icon" href="images/logo_sr.png">
+    <title>Wiki | SW | Kingdoms</title>
+    <link rel="icon" type="image/x-icon" href="images/logo_sw.png">
     <link rel="stylesheet" href="styles/css_layout.css">
     <link id="theme-link" rel="stylesheet" href="styles/css_dark.css">
 </head>
@@ -15,10 +15,10 @@
 <body>
     <div class="header">
         <a href="index.html">
-            <div class="logo"><img src="images/logo_sr.png"></div>
+            <div class="logo"><img style="border-radius: 100%;" src="images/logo_sw.png"></div>
         </a>
         <div>
-            <h1>Shattered Wiki | SR</h1>
+            <h1>Shattered Wiki | Kingdoms</h1>
             <nav>
                 <ul>
                     <a href="main-pages/lore.html" class="dropdown-toggle">Lore</a>
@@ -26,6 +26,7 @@
                         <li style="color: orange;" class="dropdown-toggle">Ayka</li>
                         <div class="dropdown-content">
                             <a href="main-pages/shattered-world.html">Shattered World</a>
+                            <a href="main-pages/shattered-realms.html">Shattered Realms</a>
                         </div>
                     </div>
                     <div class="dropdown">
@@ -55,32 +56,45 @@
     <!--Page under here-->
 
     <div class="selection-container">
+
         <div class="selection-tile">
-            <a href="histories/history-sr.html">
-                <div class="large-font tile-text">History</div>
-                <img src="images/book.png">
+            <a href="nations/nations-sw/prythonia.html">
+                <div class="large-font tile-text">Prythonia</div>
+                <img src="images/flag-prythonia.png">
             </a>
         </div>
+
         <div class="selection-tile">
-            <a href="maps/map-sr/map.html">
-                <div class="large-font tile-text">Map</div>
-                <img src="images/map-sr.jpg">
+            <a href="nations/nations-sw/varian-empire.html">
+                <div class="large-font tile-text">Varian Empire</div>
+                <img src="images/flag-varian_empire.png">
             </a>
         </div>
+
+        <a style="grid-column: span 2;" href="nations/nations-sw/bastaernia.html">
+        <div style="aspect-ratio: 2/1; grid-template-columns: auto auto; border-radius: 25%;" class="selection-tile">
+                <div class="large-font tile-text">Bastærnia</div>
+                <img src="images/flag-osterwalde.png">
+                <div class="big-font lower-tile-text" style="left: 27%;">Osterwalde</div>
+                <img src="images/flag-suaring.png">
+                <div class="big-font lower-tile-text" style="left: 75%;">Suaring</div>
+        </div>
+        </a>
+
         <div class="selection-tile">
-            <a href="">
-                <div class="large-font tile-text">Kingdoms</div>
-                <img src="images/kingdoms-sr.png">
+            <a href="nations/nations-sw/achaea.html">
+                <div class="large-font tile-text">Achæa</div>
+                <img src="images/flag-achaea.png">
             </a>
         </div>
+
         <div class="selection-tile">
-            <div class="large-font tile-text">Characters</div>
-            <img src="images/Tohkah.png">
+            <a href="nations/nations-sw/kurgan.html">
+                <div class="large-font tile-text">Kurgan</div>
+                <img src="images/flag-kurgan.png">
+            </a>
         </div>
-        <div class="selection-tile">
-            <div class="large-font tile-text">Timeline</div>
-            <img src="images/hourglass.png">
-        </div>
+
     </div>
 
 </body>

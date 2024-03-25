@@ -16,10 +16,10 @@ a {
 }
 
 .selection-tile {
-    background: rgb(255, 240, 213);
+    background: rgb(225, 194, 156);
 }
 
-.tile-text {
-    color: rgb(161, 135, 128);
+.tile-text,
+.lower-tile-text {
     text-shadow: 0px 2px white, 0px -2px white, 2px 0px white, -2px 0px white;
 }

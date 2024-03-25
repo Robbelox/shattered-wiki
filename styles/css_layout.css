@@ -1,3 +1,8 @@
+html {
+    scroll-behavior: smooth;
+    ::-webkit-scrollbar {display: none;}
+  }
+
 .header {
     padding: 0 .3em;
     display: grid;
@@ -21,7 +26,6 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background: transparent;
     min-width: 160px;
     z-index: 1;
     left: 50%;
@@ -29,7 +33,6 @@
 }
 
 .dropdown-content a {
-    color: black;
     padding: 0.5em 0;
     display: block;
 }
@@ -39,9 +42,8 @@
 }
 
 .dropdown-content a:hover {
-    background-color: lightsalmon;
     color: black;
-    /* Change text color to black when hovered over */
+    background-color: lightsalmon;
     border-radius: 10px;
 }
 
@@ -56,17 +58,19 @@
 .selection-container {
     display: grid;
     margin: auto;
-    padding: 6% 0;
+    padding: 10% 0;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-items: center;
     place-items: center;
 }
 
 .selection-tile {
-    display: inline-flex;
+    display: grid;
     min-height: 20vh;
     max-height: 33vh;
-    margin: 5%;
+    grid-gap: 5%;
+    align-items: center;
+    justify-items: center;
     aspect-ratio: 1/1;
     border-radius: 30%;
     padding: 2%;
@@ -90,6 +94,7 @@
 .character-selection-tile>img {
     aspect-ratio: 1/1;
     object-fit: cover;
+    overflow: hidden;
     max-width: 100%;
     border-radius: 30%;
 }
@@ -98,8 +103,17 @@
     position: absolute;
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
+    text-wrap: nowrap;
     top: 0%;
     left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lower-tile-text {
+    position: absolute;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    top: 95%;
     transform: translate(-50%, -50%);
 }
 
@@ -144,6 +158,19 @@ ul {
     gap: 1em
 }
 
+p {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    text-align: justify;
+    -moz-text-align-last: center;
+    text-align-last: center;
+    font-size: larger;
+}
+
+.big-font {
+    font-size: x-large;
+}
+
 .large-font {
     font-size: xx-large;
 }
@@ -151,3 +178,19 @@ ul {
 .super-large-font {
     font-size: xxx-large;
 }
+
+.text-box {
+    width: 80%;
+    margin-left: 7%;
+    padding: 2% 0;
+}
+
+.text-box > h1,
+.text-box > h2 {
+    text-align: center;
+}
+
+.centered {
+    text-align: center;
+}
+

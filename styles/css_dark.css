@@ -3,8 +3,10 @@ body {
     color: white;
 }
 
-.header {
+.header,
+form input[type="submit"] {
     background: rgb(30, 30, 30);
+    color: white;
 }
 
 a {
@@ -20,7 +22,7 @@ a {
 .character-selection-tile,
 .container {
     background: rgb(30, 30, 30);
-    outline-color: black    ;
+    outline-color: black;
 }
 
 .tile-text,

@@ -53,7 +53,7 @@
 
     <!--Page under here-->
 
-    <form id="characterForm">
+    <form id="characterForm" action="/submit-form" method="POST">
         <label for="name">Name*:</label><br>
         <input type="text" id="name" name="name" required><br><br>
       
@@ -74,6 +74,9 @@
       
         <label for="occupation">Occupation:</label><br>
         <input type="text" id="occupation" name="occupation"><br><br>
+      
+        <label for="skin">Skin*:</label><br>
+        <input type="text" id="skin" name="skin" placeholder="Link to Skin - NameMC for Example" required><br><br>
       
         <label for="nation">Nation*:</label><br>
         <input type="text" id="nation" name="nation" required><br><br>

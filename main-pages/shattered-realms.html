@@ -4,6 +4,7 @@
 <head>
     <base href="../">
     <script src="scripts/mode.js"></script>
+    <script src="scripts/download.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki | SR</title>
@@ -50,6 +51,14 @@
         🌙
     </button>
 
+    <a class="world-download" href="download/Shattered Realms.zip" download onclick="return confirmDownload()">
+        🗺️
+    </a>
+
+    <a class="pack-download" href="download/Shattered Realms Pack.zip" download onclick="return confirmDownload()">
+        🖌️
+    </a>
+
     </div>
 
     <!--Page under here-->
@@ -68,14 +77,16 @@
             </a>
         </div>
         <div class="selection-tile">
-            <a href="">
+            <a href="nations/nations-sr.html">
                 <div class="large-font tile-text">Kingdoms</div>
                 <img src="images/kingdoms-sr.png">
             </a>
         </div>
         <div class="selection-tile">
-            <div class="large-font tile-text">Characters</div>
-            <img src="images/Tohkah.png">
+            <a href="characters/characters-sr.html">
+                <div class="large-font tile-text">Characters</div>
+                <img style="width: 60%; border-radius: 0;" src="images/Tohkah.png">
+            </a>
         </div>
     </div>
 

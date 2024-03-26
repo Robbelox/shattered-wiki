@@ -15,8 +15,12 @@ a {
     color: rgb(63, 63, 63);
 }
 
-.selection-tile {
+.selection-tile,
+.bastaernia-selection-tile,
+.character-selection-tile,
+.container {
     background: rgb(225, 194, 156);
+    outline-color: burlywood;
 }
 
 .tile-text,

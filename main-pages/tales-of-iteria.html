@@ -4,6 +4,7 @@
 <head>
     <base href="../">
     <script src="scripts/mode.js"></script>
+    <script src="scripts/download.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki | Iteria</title>
@@ -49,6 +50,14 @@
         🌙
     </button>
 
+    <a class="world-download" href="download/Tales of Iteria.zip" download onclick="return confirmDownload()">
+        🗺️
+    </a>
+
+    <a class="pack-download" href="download/Tales of Iteria Pack.zip" download onclick="return confirmDownload()">
+        🖌️
+    </a>
+
     </div>
 
     <!--Page under here-->
@@ -63,16 +72,20 @@
         <div class="selection-tile">
             <a href="maps/map-iteria/map.html">
                 <div class="large-font tile-text">Map</div>
-                <img src="images/map-iteria.png" alt="">
+                <img src="images/map-iteria.png">
             </a>
         </div>
         <div class="selection-tile">
-            <div class="large-font tile-text">Factions</div>
-            <img src="images/kingdoms-iteria.png" alt="">
+            <a href="nations/nations-iteria.html">
+                <div class="large-font tile-text">Factions</div>
+                <img src="images/kingdoms-iteria.png">
+            </a>
         </div>
         <div class="selection-tile">
-            <div class="large-font tile-text">Characters</div>
-            <img src="images/Hundal.png" alt="">
+            <a href="characters/characters-iteria.html">
+                <div class="large-font tile-text">Characters</div>
+                <img style="width: 60%; border-radius: 0;" src="images/Hundal.png">
+            </a>
         </div>
     </div>
 

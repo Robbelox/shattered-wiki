@@ -15,8 +15,12 @@ a {
     background: rgb(30, 30, 30);
 }
 
-.selection-tile {
+.selection-tile,
+.bastaernia-selection-tile,
+.character-selection-tile,
+.container {
     background: rgb(30, 30, 30);
+    outline-color: black    ;
 }
 
 .tile-text,

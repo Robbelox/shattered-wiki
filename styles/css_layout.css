@@ -1,7 +1,10 @@
 html {
     scroll-behavior: smooth;
-    ::-webkit-scrollbar {display: none;}
-  }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
 
 .header {
     padding: 0 .3em;
@@ -81,32 +84,54 @@ html {
     text-align: center;
 }
 
+.bastaernia-selection-tile {
+    display: grid;
+    grid-template-columns: auto auto;
+    min-height: 15vw;
+    min-width: 30vw;
+    max-height: 45vh;
+    max-width: 90vh;
+    align-items: center;
+    justify-items: center;
+    aspect-ratio: 2/1;
+    border-radius: 25%;
+    padding: 2%;
+    position: relative;
+    text-align: center;
+}
+
 .character-selection-tile {
-    display: inline-block;
-    max-height: 150px;
-    max-width: 150px;
-    margin: 5%;
+    display: grid;
+    min-height: 10vw;
+    min-width: 10vw;
+    max-height: 30vh;
+    max-width: 30vh;
+    align-items: center;
+    justify-items: center;
     aspect-ratio: 1/1;
     border-radius: 30%;
-    padding: 1%;
+    padding: 2%;
     position: relative;
     text-align: center;
 }
 
 .selection-tile>img,
 .selection-tile>a>img,
-.character-selection-tile>img {
+.bastaernia-selection-tile>img,
+.bastaernia-selection-tile>a>img,
+.character-selection-tile>img,
+.character-selection-tile>a>img {
     aspect-ratio: 1/1;
     object-fit: cover;
     overflow: hidden;
-    max-width: 100%;
+    width: 100%;
     border-radius: 30%;
 }
 
 .tile-text {
     position: absolute;
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Inknut Antiqua', 'Times New Roman', Times, serif;
     text-wrap: nowrap;
     top: 0%;
     left: 50%;
@@ -116,8 +141,9 @@ html {
 .lower-tile-text {
     position: absolute;
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Inknut Antiqua', 'Times New Roman', Times, serif;
     top: 95%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
@@ -131,6 +157,51 @@ html {
     border: none;
 }
 
+/* Characters */
+
+.container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px; /* Set a max-width if needed */
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 999; /* Ensure it's above other content */
+    outline-style: solid;
+    outline-width: 10px;
+}
+
+.container img {
+    width: 100%;
+    height: auto;
+}
+
+.info div {
+    font-size: 18px;
+}
+
+.info div strong {
+    font-weight: bold;
+}
+
+.description {
+    text-align: justify;
+    -moz-text-align-last: center;
+    text-align-last: center;
+    grid-column: span 2;
+    height: 200px;
+    overflow: auto;
+    font-size: 11px;
+}
+
+.container.show {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
 /* Light & Dark Mode */
 
 .mode-toggle {
@@ -141,6 +212,70 @@ html {
     cursor: pointer;
     background-color: transparent;
     border: none;
+    overflow: visible;
+    /* Ensures that the hover text is visible */
+    z-index: 1;
+    /* Ensures that the hover text appears above other elements */
+}
+
+.world-download {
+    position: fixed;
+    bottom: 20px;
+    right: 70px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+    /* Ensures that the hover text is visible */
+    z-index: 1;
+    /* Ensures that the hover text appears above other elements */
+}
+
+.pack-download {
+    position: fixed;
+    bottom: 20px;
+    right: 120px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+    /* Ensures that the hover text is visible */
+    z-index: 1;
+    /* Ensures that the hover text appears above other elements */
+}
+
+.mode-toggle:hover::before,
+.world-download:hover::before,
+.pack-download:hover::before {
+    position: absolute;
+    top: -30px;
+    /* Adjust this value to change the distance of the text from the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    /* Adjust background color */
+    color: #fff;
+    /* Adjust text color */
+    padding: 5px 10px;
+    /* Adjust padding */
+    border-radius: 5px;
+    /* Adjust border radius */
+    text-wrap: nowrap;
+    font-size: small;
+}
+
+.mode-toggle:hover::before {
+    content: "Switch Mode";
+}
+
+.world-download:hover::before {
+    content: "Download World";
+}
+
+.pack-download:hover::before {
+    content: "Download Resource Pack";
 }
 
 /* Defaults */
@@ -163,7 +298,7 @@ ul {
 }
 
 p {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Inknut Antiqua', 'Times New Roman', Times, serif;
     line-height: 1.7;
     text-align: justify;
     -moz-text-align-last: center;
@@ -189,8 +324,8 @@ p {
     padding: 2% 0;
 }
 
-.text-box > h1,
-.text-box > h2 {
+.text-box>h1,
+.text-box>h2 {
     text-align: center;
 }
 
@@ -200,7 +335,7 @@ p {
 
 
 @media (max-width: 1050px) {
-    
+
     .selection-container {
         grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
     }
@@ -210,8 +345,17 @@ p {
         min-width: 40vw;
     }
 
+    .bastaernia-selection-tile {
+        min-height: 40vw;
+        min-width: 80vw;
+    }
+
     .large-font {
         font-size: x-large;
+    }
+
+    .text-box {
+        margin-left: 10%;
     }
 
 }

@@ -4,6 +4,7 @@
 <head>
     <base href="../">
     <script src="scripts/mode.js"></script>
+    <script src="scripts/download.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki | SW</title>
@@ -50,6 +51,14 @@
         🌙
     </button>
 
+    <a class="world-download" href="download/Shattered World.zip" download onclick="return confirmDownload()">
+        🗺️
+    </a>
+
+    <a class="pack-download" href="download/Shattered World Pack.zip" download onclick="return confirmDownload()">
+        🖌️
+    </a>
+
     </div>
 
     <!--Page under here-->
@@ -74,8 +83,10 @@
             </a>
         </div>
         <div class="selection-tile">
-            <div class="large-font tile-text">Characters</div>
-            <img src="images/Regulus.png">
+            <a href="characters/characters-sw.html">
+                <div class="large-font tile-text">Characters</div>
+                <img style="width: 60%; border-radius: 0;" src="images/Regulus.png">
+            </a>
         </div>
     </div>
 

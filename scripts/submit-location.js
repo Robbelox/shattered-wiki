@@ -8,6 +8,7 @@ app.post('https://formspree.io/f/xrgnypqb', (req, res) => {
     // Format message
     const message = `
         New Location Submission:
+        World: ${formData.world}
         Name: ${formData.name}
         X-Coordinate: ${formData.x}
         Y-Coordinate: ${formData.y}

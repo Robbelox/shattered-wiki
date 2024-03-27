@@ -6,7 +6,7 @@
     <script src="scripts/mode.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shattered Wiki | Submit Character</title>
+    <title>Shattered Wiki | Submit Location</title>
     <link rel="icon" type="image/x-icon" href="images/logo_sr.png">
     <link rel="stylesheet" href="styles/css_layout.css">
     <link id="theme-link" rel="stylesheet" href="styles/css_dark.css">
@@ -16,7 +16,7 @@
     <div class="header">
         <div class="logo"><img src="images/logo_sr.png"></div>
         <div>
-            <h1>Shattered Wiki | Submit Character</h1>
+            <h1>Shattered Wiki | Submit Location</h1>
             <nav>
                 <ul>
                     <a href="main-pages/lore.html" class="dropdown-toggle">Lore</a>
@@ -55,13 +55,16 @@
 
     <form id="characterForm" action="https://formspree.io/f/xrgnypqb" method="POST">
 
-        <label for="name">Name*:</label><br>
+        <label for="name">World:</label><br>
+        <input type="text" id="world" name="name" required><br><br>
+
+        <label for="name">Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
-        <label for="name">X-Coordinate*:</label><br>
+        <label for="name">X-Coordinate:</label><br>
         <input type="text" id="x" name="name" required><br><br>
       
-        <label for="full_name">Y-Coordinate*:</label><br>
+        <label for="full_name">Y-Coordinate:</label><br>
         <input type="text" id="y" name="full_name" required><br><br>
       
         <input type="submit" value="Submit">

@@ -171,11 +171,14 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* Adjust width as needed */
-    max-width: 400px; /* Set a max-width if needed */
+    width: 80%;
+    /* Adjust width as needed */
+    max-width: 400px;
+    /* Set a max-width if needed */
     padding: 20px;
     border-radius: 10px;
-    z-index: 999; /* Ensure it's above other content */
+    z-index: 999;
+    /* Ensure it's above other content */
     outline-style: solid;
     outline-width: 10px;
 }
@@ -213,6 +216,9 @@ html {
 form {
     margin-top: 100px;
     margin-bottom: 20px;
+    text-align: center;
+    width: 80%;
+    margin-left: 7%;
 }
 
 form label {
@@ -224,11 +230,12 @@ form label {
 form input[type="text"],
 form input[type="number"],
 form textarea {
-    width: 100%;
-    padding: 10px;
+    padding: 10px 10px 10px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    width: 60%;
+    text-align: center;
 }
 
 form textarea {
@@ -243,6 +250,7 @@ form input[type="submit"] {
     cursor: pointer;
     display: block;
     width: 100%;
+    margin-top: 50px;
 }
 
 form input[type="submit"]:hover {
@@ -404,6 +412,16 @@ p {
 
     .text-box {
         margin-left: 10%;
+    }
+
+    form {
+        margin-left: 10%;
+    }
+
+    form input[type="text"],
+    form input[type="number"],
+    form textarea {
+        width: 100% ;
     }
 
 }

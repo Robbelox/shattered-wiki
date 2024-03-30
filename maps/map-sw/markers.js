@@ -38,49 +38,81 @@ Use the imageScale property if the pin image is too large.
 
 UnminedCustomMarkers = {
 
-    isEnabled: false,
+    isEnabled: true,
 
     markers: [
 
-        // Example 1: Simple marker
         {
-            x: -200,
-            z: -200,
-            image: "custom.pin.png",
-            imageAnchor: [0.5, 1],
-            imageScale: 0.5,
+            x: -4380,
+            z: 1170,
+            image: "../../images/marker.png",
+            imageAnchor: [0.5, 0.5],
+            imageScale: 0.2,
+            text: 'Middle',
+            textColor: 'white',
+            offsetY: 10,
+            font: '10px bold',
         },
 
-        // Example 2: Marker with text
         {
-            x: 0,
-            z: 0,
-            image: "custom.pin.png",
-            imageAnchor: [0.5, 1],
-            imageScale: 0.5,
-            text: "Marker with text",
-            textColor: "red", 
-            offsetX: 0,
-            offsetY: 20,
-            font: "bold 20px Calibri,sans serif",
+            x: -5050,
+            z: -3950,
+            image: "../../images/marker.png",
+            imageAnchor: [0.5, 0.5],
+            imageScale: 0.2,
+            text: 'Seurri',
+            textColor: 'white',
+            offsetY: 10,
+            font: '10px bold',
         },
 
-        // Example 3: Text only
         {
-            x: 200,
-            z: 200,
-            text: "Text only", 
-            textColor: "yellow", 
-            offsetX: 0,
-            offsetY: 0, 
-            font: "bold 50px Calibri,sans serif",
+            x: -4500,
+            z: -1900,
+            image: "../../images/marker.png",
+            imageAnchor: [0.5, 0.5],
+            imageScale: 0.2,
+            text: 'Vara',
+            textColor: 'white',
+            offsetY: 10,
+            font: '10px bold',
         },
 
-        // add your markers here
+        {
+            x: -2060,
+            z: -1785,
+            image: "../../images/marker.png",
+            imageAnchor: [0.5, 0.5],
+            imageScale: 0.2,
+            text: 'Tiberia',
+            textColor: 'white',
+            offsetY: 10,
+            font: '10px bold',
+        },
 
+        {
+            x: -5760,
+            z: -4920,
+            image: "../../images/marker.png",
+            imageAnchor: [0.5, 0.5],
+            imageScale: 0.2,
+            text: 'Ormsa',
+            textColor: 'white',
+            offsetY: 10,
+            font: '10px bold',
+        },
 
+        {
+            x: -2524,
+            z: -43,
+            image: "../../images/marker.png",
+            imageAnchor: [0.5, 0.5],
+            imageScale: 0.2,
+            text: 'Mori',
+            textColor: 'white',
+            offsetY: 10,
+            font: '10px bold',
+        },
 
-
-        // do not delete the following two closing brackets
     ]
 }

@@ -25,6 +25,11 @@ a {
     outline-color: black;
 }
 
+.mini-selection-tile {
+    background: rgb(30, 30, 30, 0.2);
+    outline-color: black;
+}
+
 .tile-text,
 .lower-tile-text {
     color: white;

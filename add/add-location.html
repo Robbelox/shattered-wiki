@@ -55,17 +55,23 @@
 
     <form id="characterForm" action="https://formspree.io/f/xrgnypqb" method="POST">
 
-        <label for="name">World:</label><br>
-        <input type="text" id="world" name="name" required><br><br>
+        <label for="name">Server*:</label><br>
+        <input type="text" id="server" name="server" required><br><br>
 
-        <label for="name">Name:</label><br>
+        <label for="skin">Image:</label><br>
+        <input type="file" id="image" name="image"><br><br>
+
+        <label for="name">Name*:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
-        <label for="name">X-Coordinate:</label><br>
-        <input type="text" id="x" name="name" required><br><br>
+        <label for="name">X-Coordinate*:</label><br>
+        <input type="number" id="x" name="x" required><br><br>
       
-        <label for="full_name">Y-Coordinate:</label><br>
-        <input type="text" id="y" name="full_name" required><br><br>
+        <label for="full_name">Z-Coordinate*:</label><br>
+        <input type="number" id="z" name="z" required><br><br>
+      
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
       
         <input type="submit" value="Submit">
       </form>

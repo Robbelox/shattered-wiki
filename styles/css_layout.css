@@ -138,8 +138,6 @@ html {
 .selection-tile>a>img,
 .bastaernia-selection-tile>img,
 .bastaernia-selection-tile>a>img,
-.character-selection-tile>img,
-.character-selection-tile>a>img,
 .mini-selection-tile>a>img,
 .mini-selection-tile>img {
     aspect-ratio: 1/1;
@@ -147,6 +145,14 @@ html {
     overflow: hidden;
     width: 100%;
     border-radius: 30%;
+}
+
+.character-selection-tile>img,
+.character-selection-tile>a>img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    overflow: hidden;
+    width: 75%;
 }
 
 .tile-text {
@@ -316,9 +322,38 @@ form input[type="submit"]:hover {
     /* Ensures that the hover text appears above other elements */
 }
 
+.skin-download {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+    /* Ensures that the hover text is visible */
+    z-index: 1;
+    /* Ensures that the hover text appears above other elements */
+}
+
+.close-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+    /* Ensures that the hover text is visible */
+    z-index: 1;
+    /* Ensures that the hover text appears above other elements */
+}
+
 .mode-toggle:hover::before,
 .world-download:hover::before,
-.pack-download:hover::before {
+.pack-download:hover::before,
+.skin-download:hover::before {
     position: absolute;
     top: -30px;
     /* Adjust this value to change the distance of the text from the button */
@@ -346,6 +381,10 @@ form input[type="submit"]:hover {
 
 .pack-download:hover::before {
     content: "Download Resource Pack";
+}
+
+.skin-download:hover::before {
+    content: "Skin File";
 }
 
 /* Defaults */

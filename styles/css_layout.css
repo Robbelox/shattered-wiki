@@ -435,12 +435,14 @@ p {
 }
 
 .text-box>h1,
-.text-box>h2 {
+.text-box>h2,
+.text-box>h3 {
     text-align: center;
 }
 
 .centered {
     text-align: center;
+    justify-content: center;
 }
 
 

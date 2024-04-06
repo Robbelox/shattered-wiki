@@ -11,7 +11,7 @@ html {
     top: 0px;
     left: 0%;
     width: 100%;
-    min-height: 80px;
+    min-height: 90px;
     height: fit-contents;
     display: grid;
     grid-template-columns: 6.5em 9fr 1fr;
@@ -65,9 +65,9 @@ html {
 
 .selection-container {
     display: grid;
-    margin-top: 100px;
+    margin-top: 120px;
     height: auto;
-    padding: 15vh 0;
+    padding: 10vh 0;
     grid-gap: 30px 10px;
     grid-template-columns: repeat(auto-fit, minmax(15vw, 1fr));
     justify-items: center;
@@ -431,7 +431,7 @@ p {
 }
 
 .text-box {
-    margin-top: 80px;
+    margin-top: 60px;
     width: 80%;
     margin-left: 7%;
     padding: 2% 0;
@@ -443,13 +443,17 @@ p {
     text-align: center;
 }
 
+.text-box>h1 {
+    margin-top: 40px;
+}
+
 .centered {
     text-align: center;
     justify-content: center;
 }
 
 
-@media (max-width: 1050px) {
+@media (max-width: 650px) {
 
     .selection-container {
         grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));

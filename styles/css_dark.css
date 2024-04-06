@@ -20,13 +20,10 @@ a {
 .selection-tile,
 .bastaernia-selection-tile,
 .character-selection-tile,
+.small-selection-tile,
+.mini-selection-tile,
 .container {
     background: rgb(30, 30, 30);
-    outline-color: black;
-}
-
-.mini-selection-tile {
-    background: rgb(30, 30, 30, 0.2);
     outline-color: black;
 }
 

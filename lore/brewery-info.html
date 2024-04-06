@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="../">
+    <script src="scripts/mode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki | Lore | Brewery</title>
+    <link rel="icon" type="image/x-icon" href="images/logo_sr.png">
+    <link rel="stylesheet" href="styles/css_layout.css">
+    <link id="theme-link" rel="stylesheet" href="styles/css_dark.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="index.html">
+            <div class="logo"><img src="images/logo_sr.png"></div>
+        </a>
+        <div>
+            <h1>Shattered Wiki | Brewery</h1>
+            <nav>
+                <ul>
+                    <a style="color: orange;" href="main-pages/lore.html">Lore</a>
+                    <div class="dropdown">
+                        <li class="dropdown-toggle">Ayka</li>
+                        <div class="dropdown-content">
+                            <a href="main-pages/shattered-world.html">Shattered World</a>
+                            <a href="main-pages/shattered-realms.html">Shattered Realms</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li class="dropdown-toggle">Verdan</li>
+                        <div class="dropdown-content">
+                            <a href="main-pages/shattered-world-two.html">Shattered World Season 2</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li class="dropdown-toggle">Iteria</li>
+                        <div class="dropdown-content">
+                            <a href="main-pages/tales-of-iteria.html">Tales of Iteria</a>
+                        </div>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+        <a class="super-large-font dropdown-toggle" href="main-pages/add.html">+</a>
+    </div>
+
+    <button class="mode-toggle" onclick="toggleDarkMode()">
+        🌙
+    </button>
+
+    </div>
+
+    <!--Page under here-->
+
+    <div class="text-box">
+        <h1>Consumption</h1>
+        <h2>Drunkness</h2>
+        <p>
+            To check how drunk you are, do /brew info.
+        </p>
+        <p>
+            To get rid of drunkenness, you can:
+        </p>
+        <ul class="centered">
+            <li>Wait;</li>
+            <li>Drink huge amounts of milk;</li>
+            <li>Eat bread (twice as effective as milk).</li>
+        </ul>
+
+        <h1>Production</h1>
+        <h2>Fermenting ("Cooking")</h2>
+        <p>
+            <b>Setup Required:</b> A cauldron over a heat source (fire, lava, etc, personal recommendation: magma block
+            - quiet and not dangerous)
+        </p>
+        <p>
+            1. Fill the cauldron with water.
+        </p>
+        <p>
+            2. Right-click to add ingredients held in your hand.
+        </p>
+        <p>
+            3. Wait as much as your recipe requires.
+        </p>
+        <p>
+            4. Check the time with a clock by right clicking (won't be consumed).
+        </p>
+        <p>
+            5. Take it out with glass bottles.
+        </p>
+        <p>
+            The taken out liquid for most alcoholic drinks show you the name of the drink base, such as "Potatomash",
+            "Fermented wheat, "Boiled herbs" and many others. This most of the time means that you need some other step
+            to complete the drink. (Sometimes this is not the case and you just used an incorrect amount or an incorrect
+            timing). This brings you to the other steps: Aging and Distilling.
+        </p>
+
+        <h2>Distilling</h2>
+        <p>
+            <b>Not all drinks require distilling!</b> For some of them you'll need to skip right into Aging.
+        </p>
+        <p>
+            <b>Setup Required:</b> A brewing stand with 1 glowstone dust in the top slot.
+        </p>
+        <p>
+            1. Place your fermented potion in the brewing stand.
+        </p>
+        <p>
+            2. Wait. Some potions require more distilling rounds, some less - wait until it stops completely.
+        </p>
+        <p>
+            3. Take out your drink.
+        </p>
+
+        <h2>Aging</h2>
+        <p>
+            <b>Not all drinks require Aging! Some might only need Distilling or neither of them.</b>
+        </p>
+        <p>
+            <b>Setup Required:</b> a vanilla barrel, a small Brewery barrel or a big Brewery barrel.
+        </p>
+        <p>
+            <b>Vanilla Barrel:</b>
+            <br> - Holds up to 6 drinks.
+            <br> - Counts as an oak barrel.
+            <br>
+            <br><img src="images/Barrel.png">
+        </p>
+        <p>
+            <b>Small Barrel:</b>
+            <br><b>Required Materials:</b> 8 stairs & 1 sign.
+            <br> - Holds up to 9 drinks.
+            <br> - Can be any woodtype.
+            <br>
+            <br><img src="images/SmallBarrel.png">
+        </p>
+        <p>
+            <b>Big Barrel:</b>
+            <br><b>Required Materials:</b> 18 wood planks, 16 stairs, 4 fences, 1 sign
+            <br> - Holds up to 27 drinks.
+            <br> - Can be any woodtype.
+            <br> - You can remove the sign after creating the barrel.
+            <br>
+            <br><img src="images/BigBarrel.png">
+        </p>
+        <p>
+            After creating a custom Brewery barrel, you should get a message in chat saying "Barrel created". You can
+            then open it by right clicking.
+        </p>
+        <p>
+            Place your drink into a barrel and wait for it to age. Some drinks can be aged in any woodtype, some need a
+            specific one (e.g. Darkbeer, which needs Dark Oak). 1 year for Brewery is 1 Minecraft day (=20 minutes IRL).
+        </p>
+
+        <h2>Complete?</h2>
+        <p>
+            You'll know when a drink is complete if its name and stars show up on it. At most you can get 5 stars on a drink, this means it's of the highest quality. The text on the drink will show which parts you did best: green is perfect, yellow/orange is inaccurate, and red is quite far from perfect. (This depends on the difficulty (set in the config file) of the drink you're making: the more difficult, the less you need to fail for stars to be taken away).
+        </p>
+        <p>
+            If you're aging the drink and the aging time shows up as red, you may need to wait more (or you've already over-aged it, depends on your case, so keep an eye on your drink). Same for distilling - it may not be distilled enough yet.
+        </p>
+
+        <h2>Sealing</h2>
+        <p>
+            To prevent a drink from aging when placed in a barrel, you can seal the drink by placing it in a Brew Sealing Table. It is crafted by placing 2 glass bottles above 4 planks in a square, similar to how you'd craft a fletching table.
+        </p>
+        <p>
+            Place your drinks in the Brew sealing table and take them out after a few seconds (you should hear a bottle pop noise). This cannot be undone.
+        </p>
+
+        <h2>Dealing with Failure</h2>
+        <p>
+            So you messed up and now you've got a bunch of Ruined potions or Murky distillates? You can use a hopper to quickly dump their contents to gain your bottle back.
+        </p>
+        <p>
+            Dealing with emotional failure that you can't dump? Your potion was failed? Try again, maybe try perfecting it by using a different amount of ingredients or a shorter/longer fermenting time.
+        </p>
+        <p>
+            <b>Good Luck!</b>
+        </p>
+    </div>
+
+</body>
+
+</html>

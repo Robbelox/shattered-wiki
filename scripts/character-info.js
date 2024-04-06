@@ -8,3 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const smallTiles = document.querySelectorAll('.small-selection-tile');
+
+    smallTiles.forEach(tile => {
+        tile.addEventListener('click', function () {
+            const container = this.querySelector('.container');
+            container.classList.toggle('show');
+        });
+    });
+});

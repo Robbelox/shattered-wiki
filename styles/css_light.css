@@ -19,13 +19,10 @@ a {
 .selection-tile,
 .bastaernia-selection-tile,
 .character-selection-tile,
+.small-selection-tile,
+.mini-selection-tile,
 .container {
     background: rgb(225, 194, 156);
-    outline-color: burlywood;
-}
-
-.mini-selection-tile {
-    background: rgb(225, 194, 156, 0.2);
     outline-color: burlywood;
 }
 

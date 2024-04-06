@@ -118,7 +118,8 @@ html {
     text-align: center;
 }
 
-.character-selection-tile {
+.character-selection-tile,
+.small-selection-tile {
     display: grid;
     min-height: 10vw;
     min-width: 10vw;
@@ -138,6 +139,8 @@ html {
 .selection-tile>a>img,
 .bastaernia-selection-tile>img,
 .bastaernia-selection-tile>a>img,
+.small-selection-tile>a>img,
+.small-selection-tile>img,
 .mini-selection-tile>a>img,
 .mini-selection-tile>img {
     aspect-ratio: 1/1;

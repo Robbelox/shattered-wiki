@@ -9,6 +9,7 @@ app.post('https://formspree.io/f/mqkrypqd', (req, res) => {
     const message = `
         New Message Submission:
         Message: ${formData.message}
+        Message: ${formData.image}
     `;
 
     // Send the message to Formspree

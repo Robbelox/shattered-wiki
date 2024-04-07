@@ -199,7 +199,6 @@ html {
     /* Adjust width as needed */
     max-width: 400px;
     /* Set a max-width if needed */
-    padding: 20px;
     border-radius: 10px;
     z-index: 999;
     /* Ensure it's above other content */
@@ -207,32 +206,45 @@ html {
     outline-width: 10px;
 }
 
-.container img {
+.container>img,
+.info>img,
+.description>img {
     width: 100%;
     height: auto;
 }
 
-.info div {
+.info {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.info2 {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.info-text div {
     font-size: 18px;
 }
 
-.info div strong {
+.info-text div strong {
     font-weight: bold;
 }
 
 .description {
+    margin: 20px;
     text-align: justify;
     -moz-text-align-last: center;
     text-align-last: center;
-    grid-column: span 2;
     height: 200px;
     overflow: auto;
     font-size: 11px;
 }
 
 .container.show {
-    display: grid;
-    grid-template-columns: 40% 60%;
+    display: block;
 }
 
 /* Add */

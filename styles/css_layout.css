@@ -206,9 +206,7 @@ html {
     outline-width: 10px;
 }
 
-.container>img,
-.info>img,
-.description>img {
+div>img {
     width: 100%;
     height: auto;
 }

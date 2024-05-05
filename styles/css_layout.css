@@ -78,7 +78,7 @@ p {
     grid-template-columns: 6.5em 9fr 1fr;
     cursor: default;
     align-items: center;
-    z-index: 1;
+    z-index: 10;
 }
 
 .logo>img {
@@ -97,7 +97,7 @@ p {
     display: none;
     position: absolute;
     min-width: 160px;
-    z-index: 1;
+    z-index: 20;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -122,6 +122,7 @@ p {
 }
 
 /* Selection Grids */
+
 .selection-container {
     display: grid;
     margin-top: 120px;
@@ -177,16 +178,20 @@ p {
     height: 10%;
     min-width: 10%;
     width: fit-content;
+    z-index: 10;
 }
 
 .bastaernia-selection-tile {
+    grid-column: span 2;
     aspect-ratio: 2/1;
-    display: grid;
-    grid-template-columns: auto auto;
     min-height: 15vw;
     min-width: 30vw;
     max-height: 45vh;
     max-width: 90vh;
+}
+
+.bastaernia-selection-tile>a {
+    grid-template-columns: auto auto;
 }
 
 .character-selection-tile,
@@ -197,15 +202,15 @@ p {
     max-width: 30vh;
 }
 
-.selection-tile>img,
-.selection-tile>a>img,
-.bastaernia-selection-tile>img,
-.bastaernia-selection-tile>a>img,
-.small-selection-tile>a>img,
-.small-selection-tile>img,
-.mini-selection-tile>a>img,
-.mini-selection-tile>img {
+img {
     max-width: 100%;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    cursor: pointer;
 }
 
 .character-selection-tile>img,
@@ -222,6 +227,8 @@ p {
     font-weight: bold;
     font-family: 'Inknut Antiqua', 'Times New Roman', Times, serif;
     line-height: 0.9em;
+    z-index: 5;
+    cursor: default;
 }
 
 .tile-text {
@@ -328,28 +335,49 @@ form input[type="submit"]:hover {
 }
 
 /* Light & Dark Mode */
+
 .mode-toggle,
 .world-download,
 .pack-download,
 .skin-download,
 .close-button {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
     font-size: 24px;
     cursor: pointer;
     background-color: transparent;
     border: none;
     overflow: visible;
-    z-index: 1;
+    z-index: 50;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.skin-download {
+    top: 0px;
+    right: 90%;
+}
+
+.mode-toggle {
+    right: 20px;
+    bottom: 20px;
 }
 
 .world-download {
+    bottom: 20px;
     right: 70px;
 }
 
 .pack-download {
+    bottom: 20px;
     right:120px
+}
+
+.mode-toggle:hover,
+.world-download:hover,
+.pack-download:hover,
+.skin-download:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    cursor: pointer;
 }
 
 .mode-toggle:hover::before,

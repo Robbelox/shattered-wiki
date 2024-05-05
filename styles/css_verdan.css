@@ -1,6 +1,6 @@
 .dropdown-toggle:hover,
 .dropdown:hover .dropdown-toggle {
-    color: peachpuff;
+    color: rgb(255, 237, 221);
     /* Change text color to black when hovered over or when the dropdown menu is active */
 }
 

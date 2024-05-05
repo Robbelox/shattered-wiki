@@ -1,3 +1,4 @@
+/* General */
 html {
     scroll-behavior: smooth;
 
@@ -6,10 +7,70 @@ html {
     }
 }
 
+* {
+    text-decoration: none;
+}
+
+h1,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+}
+
+p {
+    font-family: 'Inknut Antiqua', 'Times New Roman', Times, serif;
+    line-height: 1.7;
+    text-align: justify;
+    -moz-text-align-last: center;
+    text-align-last: center;
+    font-size: larger;
+}
+
+.big-font {
+    font-size: x-large;
+}
+
+.large-font {
+    font-size: xx-large;
+}
+
+.super-large-font {
+    font-size: xxx-large;
+}
+
+.text-box {
+    margin-top: 60px;
+    width: 80%;
+    margin-left: 7%;
+    padding: 2% 0;
+}
+
+.text-box>h1,
+.text-box>h2,
+.text-box>h3 {
+    text-align: center;
+}
+
+.text-box>h1 {
+    margin-top: 40px;
+}
+
+.centered {
+    text-align: center;
+    justify-content: center;
+}
+
+/* Header */
 .header {
     position: fixed;
-    top: 0px;
-    left: 0%;
+    top: 0;
+    left: 0;
     width: 100%;
     min-height: 90px;
     height: fit-contents;
@@ -58,11 +119,9 @@ html {
 .dropdown-toggle:hover,
 .dropdown:hover .dropdown-toggle {
     color: orange;
-    /* Change text color to black when hovered over or when the dropdown menu is active */
 }
 
 /* Selection Grids */
-
 .selection-container {
     display: grid;
     margin-top: 120px;
@@ -84,12 +143,24 @@ html {
     display: grid;
     align-items: center;
     justify-items: center;
-    border-radius: 30%;
     padding: 2%;
     position: relative;
     text-align: center;
     align-content: center;
     align-items: center;
+    justify-items: center;
+}
+
+.selection-tile>a,
+.small-selection-tile>a,
+.mini-selection-tile>a,
+.character-selection-tile>a,
+.bastaernia-selection-tile>a {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    align-content: center;
     justify-items: center;
 }
 
@@ -106,7 +177,6 @@ html {
     height: 10%;
     min-width: 10%;
     width: fit-content;
-    border-radius: 0%;
 }
 
 .bastaernia-selection-tile {
@@ -117,7 +187,6 @@ html {
     min-width: 30vw;
     max-height: 45vh;
     max-width: 90vh;
-    border-radius: 25%;
 }
 
 .character-selection-tile,
@@ -137,7 +206,6 @@ html {
 .mini-selection-tile>a>img,
 .mini-selection-tile>img {
     max-width: 100%;
-    border-radius: 20%;
 }
 
 .character-selection-tile>img,
@@ -148,37 +216,27 @@ html {
     width: 75%;
 }
 
-.tile-text {
+.tile-text,
+.lower-tile-text {
     position: absolute;
     font-weight: bold;
     font-family: 'Inknut Antiqua', 'Times New Roman', Times, serif;
-    text-wrap: nowrap;
-    top: 0%;
+    line-height: 0.9em;
+}
+
+.tile-text {
+    top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .lower-tile-text {
-    position: absolute;
-    font-weight: bold;
-    font-family: 'Inknut Antiqua', 'Times New Roman', Times, serif;
     top: 95%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.back {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    font-size: 24px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-}
-
 /* Characters */
-
 .container {
     display: none;
     position: fixed;
@@ -186,31 +244,26 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    /* Adjust width as needed */
     max-width: 400px;
-    /* Set a max-width if needed */
-    border-radius: 10px;
     z-index: 999;
-    /* Ensure it's above other content */
     outline-style: solid;
     outline-width: 10px;
 }
 
-div>img {
+.container.show {
+    display: block;
+}
+
+.container>img {
     width: 100%;
     height: auto;
 }
 
-.info {
-    margin: 20px;
-    display: grid;
-    grid-template-columns: 40% 60%;
-}
-
+.info,
 .info2 {
     margin: 20px;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 60%;
 }
 
 .info-text div {
@@ -231,12 +284,7 @@ div>img {
     font-size: 11px;
 }
 
-.container.show {
-    display: block;
-}
-
 /* Add */
-
 form {
     margin-top: 100px;
     margin-bottom: 20px;
@@ -254,9 +302,8 @@ form label {
 form input[type="text"],
 form input[type="number"],
 form textarea {
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
     box-sizing: border-box;
     width: 60%;
     text-align: center;
@@ -270,7 +317,6 @@ form textarea {
 form input[type="submit"] {
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     display: block;
     width: 100%;
@@ -282,8 +328,11 @@ form input[type="submit"]:hover {
 }
 
 /* Light & Dark Mode */
-
-.mode-toggle {
+.mode-toggle,
+.world-download,
+.pack-download,
+.skin-download,
+.close-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -292,65 +341,15 @@ form input[type="submit"]:hover {
     background-color: transparent;
     border: none;
     overflow: visible;
-    /* Ensures that the hover text is visible */
     z-index: 1;
-    /* Ensures that the hover text appears above other elements */
 }
 
 .world-download {
-    position: fixed;
-    bottom: 20px;
     right: 70px;
-    font-size: 24px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    overflow: visible;
-    /* Ensures that the hover text is visible */
-    z-index: 1;
-    /* Ensures that the hover text appears above other elements */
 }
 
 .pack-download {
-    position: fixed;
-    bottom: 20px;
-    right: 120px;
-    font-size: 24px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    overflow: visible;
-    /* Ensures that the hover text is visible */
-    z-index: 1;
-    /* Ensures that the hover text appears above other elements */
-}
-
-.skin-download {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    font-size: 25px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    overflow: visible;
-    /* Ensures that the hover text is visible */
-    z-index: 1;
-    /* Ensures that the hover text appears above other elements */
-}
-
-.close-button {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    font-size: 25px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    overflow: visible;
-    /* Ensures that the hover text is visible */
-    z-index: 1;
-    /* Ensures that the hover text appears above other elements */
+    right:120px
 }
 
 .mode-toggle:hover::before,
@@ -359,17 +358,11 @@ form input[type="submit"]:hover {
 .skin-download:hover::before {
     position: absolute;
     top: -30px;
-    /* Adjust this value to change the distance of the text from the button */
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
-    /* Adjust background color */
     color: #fff;
-    /* Adjust text color */
     padding: 5px 10px;
-    /* Adjust padding */
-    border-radius: 5px;
-    /* Adjust border radius */
     text-wrap: nowrap;
     font-size: small;
 }
@@ -389,69 +382,6 @@ form input[type="submit"]:hover {
 .skin-download:hover::before {
     content: "Skin File";
 }
-
-/* Defaults */
-
-* {
-    text-decoration: none;
-}
-
-h1 {
-    margin: 0;
-    padding: 0;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    gap: 1em
-}
-
-p {
-    font-family: 'Inknut Antiqua', 'Times New Roman', Times, serif;
-    line-height: 1.7;
-    text-align: justify;
-    -moz-text-align-last: center;
-    text-align-last: center;
-    font-size: larger;
-}
-
-.big-font {
-    font-size: x-large;
-}
-
-.large-font {
-    font-size: xx-large;
-}
-
-.super-large-font {
-    font-size: xxx-large;
-}
-
-.text-box {
-    margin-top: 60px;
-    width: 80%;
-    margin-left: 7%;
-    padding: 2% 0;
-}
-
-.text-box>h1,
-.text-box>h2,
-.text-box>h3 {
-    text-align: center;
-}
-
-.text-box>h1 {
-    margin-top: 40px;
-}
-
-.centered {
-    text-align: center;
-    justify-content: center;
-}
-
 
 @media (max-width: 650px) {
 

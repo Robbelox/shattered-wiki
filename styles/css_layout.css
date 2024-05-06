@@ -213,6 +213,11 @@ img:hover {
     cursor: pointer;
 }
 
+.no-zoom:hover {
+    transform: none;
+    cursor: default
+}
+
 .character-selection-tile>img,
 .character-selection-tile>a>img {
     aspect-ratio: 1/1;
@@ -444,5 +449,4 @@ form input[type="submit"]:hover {
     form textarea {
         width: 100% ;
     }
-
 }

@@ -46,8 +46,8 @@ p {
 
 .text-box {
     margin-top: 60px;
-    width: 80%;
-    margin-left: 7%;
+    width: 50%;
+    margin-left: 22%;
     padding: 2% 0;
 }
 
@@ -134,11 +134,7 @@ p {
     place-items: center;
 }
 
-.selection-tile,
-.small-selection-tile,
-.mini-selection-tile,
-.character-selection-tile,
-.bastaernia-selection-tile {
+.tile {
     object-fit: cover;
     aspect-ratio: 1/1;
     display: grid;
@@ -152,11 +148,7 @@ p {
     justify-items: center;
 }
 
-.selection-tile>a,
-.small-selection-tile>a,
-.mini-selection-tile>a,
-.character-selection-tile>a,
-.bastaernia-selection-tile>a {
+.tile>a {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -165,14 +157,14 @@ p {
     justify-items: center;
 }
 
-.selection-tile {
+.big-tile {
     min-height: 15vw;
     min-width: 15vw;
     max-height: 45vh;
     max-width: 45vh;
 }
 
-.mini-selection-tile {
+.mini-tile {
     aspect-ratio: unset;
     position: absolute;
     height: 10%;
@@ -181,7 +173,7 @@ p {
     z-index: 10;
 }
 
-.bastaernia-selection-tile {
+.long-tile {
     grid-column: span 2;
     aspect-ratio: 2/1;
     min-height: 15vw;
@@ -190,12 +182,11 @@ p {
     max-width: 90vh;
 }
 
-.bastaernia-selection-tile>a {
+.long-tile>a {
     grid-template-columns: auto auto;
 }
 
-.character-selection-tile,
-.small-selection-tile {
+.small-tile {
     min-height: 10vw;
     min-width: 10vw;
     max-height: 30vh;
@@ -203,7 +194,7 @@ p {
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
@@ -215,12 +206,12 @@ img:hover {
 
 .no-zoom:hover {
     transform: none;
+    filter: none;
     cursor: default
 }
 
-.character-selection-tile>img,
-.character-selection-tile>a>img {
-    aspect-ratio: 1/1;
+.small-tile>img,
+.small-tile>a>img {
     object-fit: cover;
     overflow: hidden;
     width: 75%;
@@ -237,6 +228,7 @@ img:hover {
 }
 
 .tile-text {
+    width: 100%;
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -271,6 +263,11 @@ img:hover {
     height: auto;
 }
 
+.text-box>p>img {
+    width: 30%;
+    height: auto;
+}
+
 .info,
 .info2 {
     margin: 20px;
@@ -296,47 +293,10 @@ img:hover {
     font-size: 11px;
 }
 
-/* Add */
-form {
-    margin-top: 100px;
-    margin-bottom: 20px;
-    text-align: center;
-    width: 80%;
-    margin-left: 7%;
-}
-
-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-form input[type="text"],
-form input[type="number"],
-form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    width: 60%;
-    text-align: center;
-}
-
-form textarea {
-    height: 100px;
-    resize: vertical;
-}
-
-form input[type="submit"] {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    margin-top: 50px;
-}
-
-form input[type="submit"]:hover {
-    background-color: #ff8c00;
+.double-column {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
 }
 
 /* Light & Dark Mode */
@@ -422,12 +382,12 @@ form input[type="submit"]:hover {
         grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
     }
 
-    .selection-tile {
+    .tile {
         min-height: 40vw;
         min-width: 40vw;
     }
 
-    .bastaernia-selection-tile {
+    .long-tile {
         min-height: 40vw;
         min-width: 80vw;
     }
@@ -438,15 +398,5 @@ form input[type="submit"]:hover {
 
     .text-box {
         margin-left: 10%;
-    }
-
-    form {
-        margin-left: 10%;
-    }
-
-    form input[type="text"],
-    form input[type="number"],
-    form textarea {
-        width: 100% ;
     }
 }

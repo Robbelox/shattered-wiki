@@ -16,11 +16,7 @@ a {
     color: rgb(63, 63, 63);
 }
 
-.selection-tile,
-.bastaernia-selection-tile,
-.character-selection-tile,
-.small-selection-tile,
-.mini-selection-tile,
+.tile,
 .container {
     background: rgb(255, 231, 202);
     outline-color: burlywood;

@@ -36,11 +36,7 @@ form input[type="submit"] {
     background: rgb(30, 30, 30);
 }
 
-.selection-tile,
-.bastaernia-selection-tile,
-.character-selection-tile,
-.small-selection-tile,
-.mini-selection-tile,
+.tile,
 .container {
     background: rgb(30, 30, 30);
     outline-color: black;

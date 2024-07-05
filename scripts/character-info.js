@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const tiles = document.querySelectorAll('.character-selection-tile, .small-selection-tile');
+    const tiles = document.querySelectorAll('.tile');
 
     // Function to hide all containers except the one related to the clicked tile
     function hideAllContainersExcept(clickedTile) {
@@ -14,11 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const clickedElement = event.target;
 
         // If clicked element is a tile or its image
-        if (clickedElement.classList.contains('character-selection-tile') || clickedElement.classList.contains('small-selection-tile') || clickedElement.tagName === 'IMG') {
-            const container = clickedElement.closest('.character-selection-tile, .small-selection-tile').querySelector('.container');
+        if (clickedElement.classList.contains('tile') || clickedElement.classList.contains('tile') || clickedElement.tagName === 'IMG') {
+            const container = clickedElement.closest('.tile').querySelector('.container');
             container.classList.toggle('show');
             // Hide all other containers
-            hideAllContainersExcept(clickedElement.closest('.character-selection-tile, .small-selection-tile'));
+            hideAllContainersExcept(clickedElement.closest('.tile'));
         } 
         // If clicked element is not a container or its parent
         else if (!clickedElement.closest('.container')) {

@@ -1,10 +1,15 @@
 function fetchGoogleSheetData() {
     const sheetId = '1cKgbZBKcpeCBMboWuKG5OzuD8sUfbJbdwBRYc6kPUgw'; // Your Google Sheets ID
+    const sheetNumber = '1'; // Sheet number if there are multiple sheets
 
-    Tabletop.init({
-        key: sheetId,
-        simpleSheet: true,
-        callback: function(data) {
+    // Construct the URL for the published Google Sheet CSV
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetNumber}`;
+
+    fetch(url)
+        .then(response => response.text())
+        .then(csvText => {
+            const data = Papa.parse(csvText, { header: true }).data; // Use PapaParse to parse the CSV data
+
             const container = document.getElementById('character-container'); // Parent container
 
             data.forEach(entry => {
@@ -58,8 +63,8 @@ function fetchGoogleSheetData() {
 
                 container.appendChild(tile);
             });
-        }
-    });
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }
 
 // Call the function when the page loads

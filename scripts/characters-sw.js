@@ -63,11 +63,11 @@ function fetchGoogleSheetData() {
         .catch(error => console.error('Error fetching data:', error));
 }
 
-// Function to convert Google Drive link to desired direct link format
+// Function to convert Google Drive link to direct link
 function convertToDirectLink(driveLink) {
     const fileIdMatch = driveLink.match(/id=([^&]+)/);
     if (fileIdMatch && fileIdMatch[1]) {
-        return `https://drive.googleusercontent.com/download?id=${fileIdMatch[1]}&export=view&authuser=0`;
+        return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
     }
     return driveLink; // Return the original link if no match is found
 }

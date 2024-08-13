@@ -4,26 +4,15 @@ function fetchGoogleSheetData() {
     fetch(url)
         .then(response => response.text())
         .then(csvText => {
-            // Parse the CSV data using PapaParse with headers
-            const parsedData = Papa.parse(csvText, { header: true });
-
-            // Log the whole parsed object to see what it contains
-            console.log('Parsed Data Object:', parsedData);
-
-            // Get the actual data array
-            const data = parsedData.data;
-
-            // Log the first entry to inspect its structure
-            console.log('First Entry:', data[0]);
+            const data = Papa.parse(csvText, { header: true }).data; // Parse the CSV data using PapaParse
 
             const container = document.getElementById('selection-container'); // Parent container
 
             data.forEach(entry => {
-                // Access the properties as per the headers in your CSV
                 const Name = entry['Name'];
-                const Face = entry['Face'];
-                const Body = entry['Body'];
-                const Skin = entry['Skin'];
+                const Face = convertToDirectLink(entry['Face']);
+                const Body = convertToDirectLink(entry['Body']);
+                const Skin = convertToDirectLink(entry['Skin']);
                 const FullName = entry['Full Name'];
                 const BirthYear = entry['Birth Year'];
                 const DeathYear = entry['Death Year'];
@@ -35,48 +24,52 @@ function fetchGoogleSheetData() {
                 const Player = entry['Played By'];
                 const Description = entry['Description'];
 
-                // Log each value to check if it's undefined
-                console.log('Name:', Name, 'Face:', Face, 'Body:', Body);
+                // Create the HTML structure
+                const tile = document.createElement('div');
+                tile.classList.add('tile', 'small-tile');
 
-                // Create the HTML structure only if data is valid
-                if (Name) {
-                    const tile = document.createElement('div');
-                    tile.classList.add('tile', 'small-tile');
-
-                    tile.innerHTML = `
-                        <div class="large-font tile-text">${Name}</div>
-                        <img src="${Face}">
-                        <div class="container">
-                            <div class="info">
-                                <div>
-                                    <a href="${Skin}">
-                                        <img src="${Body}" alt="Character Image">
-                                    </a>
-                                </div>
-                                <div class="info-text">
-                                    <div style="font-size: x-large;"><strong>${FullName}</strong></div>
-                                    <div style="font-size: small;">${BirthYear} - ${DeathYear}</div>
-                                    <br>
-                                    <div><strong>Species:</strong> ${Species}</div>
-                                    <div><strong>Gender:</strong> ${Gender}</div>
-                                    <div><strong>Occupation:</strong> ${Occupation}</div>
-                                    <br>
-                                    <div><strong>Faction:</strong> ${Nation}</div>
-                                    <br>
-                                    <div><strong>Played By:</strong> ${Player}</div>
-                                </div>
+                tile.innerHTML = `
+                    <div class="large-font tile-text">${Name}</div>
+                    <img src="${Face}">
+                    <div class="container">
+                        <div class="info">
+                            <div>
+                                <a href="${Skin}">
+                                    <img src="${Body}" alt="Character Image">
+                                </a>
                             </div>
-                            <div class="description">
-                                ${Description}
+                            <div class="info-text">
+                                <div style="font-size: x-large;"><strong>${FullName}</strong></div>
+                                <div style="font-size: small;">${BirthYear} - ${DeathYear}</div>
+                                <br>
+                                <div><strong>Species:</strong> ${Species}</div>
+                                <div><strong>Gender:</strong> ${Gender}</div>
+                                <div><strong>Occupation:</strong> ${Occupation}</div>
+                                <br>
+                                <div><strong>Faction:</strong> ${Nation}</div>
+                                <br>
+                                <div><strong>Played By:</strong> ${Player}</div>
                             </div>
                         </div>
-                    `;
+                        <div class="description">
+                            ${Description}
+                        </div>
+                    </div>
+                `;
 
-                    container.appendChild(tile);
-                }
+                container.appendChild(tile);
             });
         })
         .catch(error => console.error('Error fetching data:', error));
+}
+
+// Function to convert Google Drive link to direct link
+function convertToDirectLink(driveLink) {
+    const fileIdMatch = driveLink.match(/id=([^&]+)/);
+    if (fileIdMatch && fileIdMatch[1]) {
+        return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
+    }
+    return driveLink; // Return the original link if no match is found
 }
 
 // Call the function when the page loads

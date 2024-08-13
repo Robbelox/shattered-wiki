@@ -1,14 +1,10 @@
 function fetchGoogleSheetData() {
-    const sheetId = '1cKgbZBKcpeCBMboWuKG5OzuD8sUfbJbdwBRYc6kPUgw'; // Your Google Sheets ID
-    const sheetNumber = '1'; // Sheet number if there are multiple sheets
-
-    // Construct the URL for the published Google Sheet CSV
-    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetNumber}`;
+    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRqt2jpKBxKcScnjwpK-rUcL1RpEXRoJ4cOmTOHJjIMlS--I61Aca2H9upkJOIF6r3Q1eZMPcwlSqsv/pub?output=csv';
 
     fetch(url)
         .then(response => response.text())
         .then(csvText => {
-            const data = Papa.parse(csvText, { header: true }).data; // Use PapaParse to parse the CSV data
+            const data = Papa.parse(csvText, { header: true }).data; // Parse the CSV data using PapaParse
 
             const container = document.getElementById('character-container'); // Parent container
 

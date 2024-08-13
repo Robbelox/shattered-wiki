@@ -8,6 +8,8 @@ function fetchGoogleSheetData() {
 
             const container = document.getElementById('selection-container'); // Parent container
 
+            const filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered World 1'));
+            
             data.forEach(entry => {
                 const Name = entry['Name'];
                 const Face = convertToDirectLink(entry['Face']);
@@ -22,7 +24,7 @@ function fetchGoogleSheetData() {
                 const Server = entry['Server'];
                 const Nation = entry['Nation'];
                 const Player = entry['Played By'];
-                const Description = entry['Description'];
+                const Description = convertToParagraphs(entry['Description']);
 
                 // Create the HTML structure
                 const tile = document.createElement('div');
@@ -70,6 +72,16 @@ function convertToDirectLink(driveLink) {
         return `https://drive.google.com/thumbnail?id=${fileIdMatch[1]}`;
     }
     return driveLink; // Return the original link if no match is found
+}
+
+// Function to convert description text into paragraphs
+function convertToParagraphs(text) {
+    if (!text) return '';
+    return text
+        .trim() // Remove leading and trailing whitespace
+        .split('\n\n') // Split text by newlines, assuming each newline represents a new paragraph
+        .map(paragraph => `<p>${paragraph.trim()}</p>`) // Wrap each trimmed paragraph in <p> tags
+        .join('\n'); // Join paragraphs without additional spaces
 }
 
 // Call the function when the page loads

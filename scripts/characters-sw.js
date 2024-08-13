@@ -67,7 +67,7 @@ function fetchGoogleSheetData() {
 function convertToDirectLink(driveLink) {
     const fileIdMatch = driveLink.match(/id=([^&]+)/);
     if (fileIdMatch && fileIdMatch[1]) {
-        return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
+        return `https://drive.google.com/thumbnail?id=${fileIdMatch[1]}`;
     }
     return driveLink; // Return the original link if no match is found
 }

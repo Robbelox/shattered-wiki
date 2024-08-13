@@ -8,22 +8,26 @@ function fetchGoogleSheetData() {
 
             const container = document.getElementById('selection-container'); // Parent container
 
+            // Filter the data to include only rows where 'Server' column contains 'Shattered World 1'
             const filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered World 1'));
-            
-            data.forEach(entry => {
-                const Name = entry['Name'];
+
+            // Clear existing content
+            container.innerHTML = '';
+
+            filteredData.forEach(entry => {
+                const Name = entry['Name'] || 'Unknown Name';
                 const Face = convertToDirectLink(entry['Face']);
                 const Body = convertToDirectLink(entry['Body']);
                 const Skin = convertToDirectLink(entry['Skin']);
-                const FullName = entry['Full Name'];
-                const BirthYear = entry['Birth Year'];
-                const DeathYear = entry['Death Year'];
-                const Species = entry['Species'];
-                const Gender = entry['Gender'];
-                const Occupation = entry['Occupation'];
-                const Server = entry['Server'];
-                const Nation = entry['Nation'];
-                const Player = entry['Played By'];
+                const FullName = entry['Full Name'] || 'Unknown Full Name';
+                const BirthYear = entry['Birth Year'] || 'Unknown Birth Year';
+                const DeathYear = entry['Death Year'] || 'Unknown Death Year';
+                const Species = entry['Species'] || 'Unknown Species';
+                const Gender = entry['Gender'] || 'Unknown Gender';
+                const Occupation = entry['Occupation'] || 'Unknown Occupation';
+                const Server = entry['Server'] || 'Unknown Server';
+                const Nation = entry['Nation'] || 'Unknown Nation';
+                const Player = entry['Played By'] || 'Unknown Player';
                 const Description = convertToParagraphs(entry['Description']);
 
                 // Create the HTML structure
@@ -32,7 +36,7 @@ function fetchGoogleSheetData() {
 
                 tile.innerHTML = `
                     <div class="large-font tile-text">${Name}</div>
-                    <img src="${Face}">
+                    <img src="${Face}" alt="${Name}'s Face">
                     <div class="container">
                         <div class="info">
                             <div>
@@ -79,9 +83,9 @@ function convertToParagraphs(text) {
     if (!text) return '';
     return text
         .trim() // Remove leading and trailing whitespace
-        .split('\n\n') // Split text by newlines, assuming each newline represents a new paragraph
+        .split(/\n\s*\n/) // Split text by double newlines, assuming each newline represents a new paragraph
         .map(paragraph => `<p>${paragraph.trim()}</p>`) // Wrap each trimmed paragraph in <p> tags
-        .join('\n'); // Join paragraphs without additional spaces
+        .join(''); // Join paragraphs without additional spaces
 }
 
 // Call the function when the page loads

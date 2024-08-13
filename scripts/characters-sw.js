@@ -6,7 +6,7 @@ function fetchGoogleSheetData() {
         .then(csvText => {
             const data = Papa.parse(csvText, { header: true }).data; // Parse the CSV data using PapaParse
 
-            const container = document.getElementById('character-container'); // Parent container
+            const container = document.getElementById('selection-container'); // Parent container
 
             data.forEach(entry => {
                 const Name = entry.name;

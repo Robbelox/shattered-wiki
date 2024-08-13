@@ -6,23 +6,31 @@ function fetchGoogleSheetData() {
         .then(csvText => {
             const data = Papa.parse(csvText, { header: true }).data; // Parse the CSV data using PapaParse
 
+            console.log('Parsed Data:', data); // Log the parsed data to check
+
             const container = document.getElementById('selection-container'); // Parent container
 
             data.forEach(entry => {
-                const Name = entry.name;
-                const Face = entry.face;
-                const Body = entry.body;
-                const Skin = entry.skin;
-                const FullName = entry.full_name;
-                const BirthYear = entry.birth_year;
-                const DeathYear = entry.death_year;
-                const Species = entry.species;
-                const Gender = entry.gender;
-                const Occupation = entry.occupation;
-                const Server = entry.server;
-                const Nation = entry.nation;
-                const Player = entry.played_by;
-                const Description = entry.description;
+                console.log('Entry:', entry); // Log each entry to see its structure
+
+                // Adjust these keys to match the exact headers in your CSV
+                const Name = entry.Name;
+                const Face = entry.Face;
+                const Body = entry.Body;
+                const Skin = entry.Skin;
+                const FullName = entry['Full Name'];
+                const BirthYear = entry['Birth Year'];
+                const DeathYear = entry['Death Year'];
+                const Species = entry.Species;
+                const Gender = entry.Gender;
+                const Occupation = entry.Occupation;
+                const Server = entry.Server;
+                const Nation = entry.Nation;
+                const Player = entry['Played By'];
+                const Description = entry.Description;
+
+                // Log values to check if they are undefined
+                console.log('Name:', Name, 'Face:', Face, 'Body:', Body);
 
                 // Create the HTML structure
                 const tile = document.createElement('div');
@@ -40,7 +48,7 @@ function fetchGoogleSheetData() {
                             </div>
                             <div class="info-text">
                                 <div style="font-size: x-large;"><strong>${FullName}</strong></div>
-                                <div style="font-size: small;">${BirthYear - DeathYear}</div>
+                                <div style="font-size: small;">${BirthYear} - ${DeathYear}</div>
                                 <br>
                                 <div><strong>Species:</strong> ${Species}</div>
                                 <div><strong>Gender:</strong> ${Gender}</div>

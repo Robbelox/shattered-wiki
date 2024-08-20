@@ -26,17 +26,11 @@ function fetchGoogleSheetData() {
                 filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Tales of Iteria'));
             }
 
-            // Sort the filtered data alphabetically by 'Name'
-            filteredData.sort((a, b) => (a['Name'] || '').localeCompare(b['Name'] || ''));
-
             // Clear existing content
             container.innerHTML = '';
 
-            // Function to load characters one by one with a delay
-            function loadCharacter(index) {
-                if (index >= filteredData.length) return; // Stop if we've loaded all characters
-
-                const entry = filteredData[index];
+            // Function to load characters one by one
+            function loadCharacter(entry) {
                 const Name = entry['Name'] || 'Unknown';
                 const Face = convertToDirectLink(entry['Face']);
                 const Body = convertToDirectLink(entry['Body']);
@@ -86,13 +80,29 @@ function fetchGoogleSheetData() {
                 `;
 
                 container.appendChild(tile);
-
-                // Load the next character after a delay
-                setTimeout(() => loadCharacter(index + 1), 100); // 300ms delay between each character
             }
 
-            // Start loading characters one by one
-            loadCharacter(0);
+            // Sort the filtered data alphabetically by 'Name' in the background
+            const sortedData = filteredData.slice().sort((a, b) => (a['Name'] || '').localeCompare(b['Name'] || ''));
+
+            // Immediately start rendering filtered characters
+            let renderIndex = 0;
+            const renderBatchSize = 10; // Render in batches for smoother experience
+
+            function renderNextBatch() {
+                const batch = sortedData.slice(renderIndex, renderIndex + renderBatchSize);
+                batch.forEach(entry => loadCharacter(entry));
+                renderIndex += renderBatchSize;
+
+                // If there are more characters, continue loading the next batch
+                if (renderIndex < sortedData.length) {
+                    setTimeout(renderNextBatch, 50); // Small delay between batches
+                }
+            }
+
+            // Start rendering immediately after filtering
+            renderNextBatch();
+
         })
         .catch(error => console.error('Error fetching data:', error));
 }
@@ -117,4 +127,4 @@ function convertToParagraphs(text) {
 }
 
 // Call the function when the page loads
-window.addEventListener('DOMContentLoaded', fetchGoogleSheetData);
+window.addEventListener('DOMContentLoaded', fetchGoogleSheetDat

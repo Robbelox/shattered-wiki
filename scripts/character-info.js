@@ -4,23 +4,25 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to hide all containers except the one related to the clicked tile
     function hideAllContainersExcept(clickedTile) {
         tiles.forEach(tile => {
+            const container = tile.querySelector('.container');
             if (tile !== clickedTile) {
-                tile.querySelector('.container').classList.remove('show');
+                container.classList.remove('show');
             }
         });
     }
 
     document.addEventListener('click', function (event) {
         const clickedElement = event.target;
+        const tile = clickedElement.closest('.tile');
 
-        // If clicked element is a tile or its image
-        if (clickedElement.classList.contains('tile') || clickedElement.classList.contains('tile') || clickedElement.tagName === 'IMG') {
-            const container = clickedElement.closest('.tile').querySelector('.container');
+        // If clicked element is a tile or its image inside a tile
+        if (tile) {
+            const container = tile.querySelector('.container');
             container.classList.toggle('show');
             // Hide all other containers
-            hideAllContainersExcept(clickedElement.closest('.tile'));
+            hideAllContainersExcept(tile);
         } 
-        // If clicked element is not a container or its parent
+        // If clicked element is outside any container
         else if (!clickedElement.closest('.container')) {
             // Hide all containers
             tiles.forEach(tile => {
@@ -33,8 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
     tiles.forEach(tile => {
         const container = tile.querySelector('.container');
         const containerImage = container.querySelector('img');
-        containerImage.addEventListener('click', function(event) {
-            event.stopPropagation(); // Prevent click event from bubbling up to parent elements
-        });
+        if (containerImage) {
+            containerImage.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent click event from bubbling up to parent elements
+            });
+        }
     });
 });

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             container.classList.toggle('show');
             // Hide all other containers
             hideAllContainersExcept(tile);
-        } 
+        }
         // If clicked element is outside any container
         else if (!clickedElement.closest('.container')) {
             // Hide all containers
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const container = tile.querySelector('.container');
         const containerImage = container.querySelector('img');
         if (containerImage) {
-            containerImage.addEventListener('click', function(event) {
+            containerImage.addEventListener('click', function (event) {
                 event.stopPropagation(); // Prevent click event from bubbling up to parent elements
             });
         }

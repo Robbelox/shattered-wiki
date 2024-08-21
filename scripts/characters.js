@@ -16,13 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener('click', function (event) {
         const clickedElement = event.target;
         const tile = clickedElement.closest('.tile');
+        const clickedInsideContainer = clickedElement.closest('.container');
 
         if (tile) {
             const tileContainer = tile.querySelector('.container');
             tileContainer.classList.toggle('show');
             hideAllContainersExcept(tile);
-        } else if (!clickedElement.closest('.container')) {
-            // Hide all containers if click is outside of any container
+        } else if (!clickedInsideContainer) {
+            // Hide all containers if click is outside of any tile or container
             const tiles = container.querySelectorAll('.tile');
             tiles.forEach(tile => {
                 tile.querySelector('.container').classList.remove('show');

@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const BirthYear = entry['Birth Year'] || 'Unknown';
                     const DeathYear = entry['Death Year'] || 'Unknown';
                     const Species = entry['Species'] || 'Unknown';
-                    const Gender = entry['Gender'] || 'Unknown';
+                    const Pronouns = entry['Pronouns'] || 'Unknown';
                     const Occupation = entry['Occupation'] || 'Unknown';
                     const Nation = entry['Nation'] || 'Unknown';
                     const Player = entry['Played By'] || 'Unknown';
@@ -92,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <div style="font-size: x-large;"><strong>${FullName}</strong></div>
                                     <div style="font-size: small;">${BirthYear} - ${DeathYear}</div>
                                     <br>
+                                    <div><strong>Pronouns:</strong> ${Prounouns}</div>
                                     <div><strong>Species:</strong> ${Species}</div>
-                                    <div><strong>Gender:</strong> ${Gender}</div>
                                     <div><strong>Occupation:</strong> ${Occupation}</div>
                                     <br>
                                     <div><strong>Faction:</strong> ${Nation}</div>

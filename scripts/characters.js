@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <div style="font-size: x-large;"><strong>${FullName}</strong></div>
                                     <div style="font-size: small;">${BirthYear} - ${DeathYear}</div>
                                     <br>
-                                    <div><strong>Pronouns:</strong> ${Prounouns}</div>
+                                    <div><strong>Pronouns:</strong> ${Pronouns}</div>
                                     <div><strong>Species:</strong> ${Species}</div>
                                     <div><strong>Occupation:</strong> ${Occupation}</div>
                                     <br>

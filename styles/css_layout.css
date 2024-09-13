@@ -167,10 +167,11 @@ p {
 .mini-tile {
     aspect-ratio: unset;
     position: absolute;
+    max-height: 33%;
     height: 10%;
     min-width: 10%;
     width: fit-content;
-    z-index: 10;
+    z-index: 1;
 }
 
 .long-tile {
@@ -333,7 +334,7 @@ img:hover {
 
 .pack-download {
     bottom: 20px;
-    right:120px
+    right: 120px
 }
 
 .mode-toggle:hover,
@@ -374,6 +375,37 @@ img:hover {
 
 .skin-download:hover::before {
     content: "Skin File";
+}
+
+.fluid {
+    position: absolute;
+    bottom: 12.3%;
+    left: 50;
+    width: 49.5%;
+    height: 50.5%;
+    z-index: 1;
+    background-color: transparent;
+    /* Make sure the fluid background is circular */
+}
+
+.fluid-image {
+    position: absolute;
+    top: 50;
+    left: 50;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    mix-blend-mode: multiply;
+    /* Blend the white fluid image with the background color */
+}
+
+.overlay {
+    position: absolute;
+    top: 50;
+    left: 50;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
 }
 
 @media (max-width: 650px) {

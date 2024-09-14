@@ -302,6 +302,11 @@ img:hover {
     font-size: 11px;
 }
 
+.description::-webkit-scrollbar {
+    display: none;
+}
+
+
 .double-column {
     display: grid;
     grid-template-columns: 50% 50%;

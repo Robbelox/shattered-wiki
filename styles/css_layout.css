@@ -1,18 +1,18 @@
 /* General */
 html {
     scroll-behavior: smooth;
+}
 
-    ::-webkit-scrollbar {
-        display: none;
-    }
+html::-webkit-scrollbar {
+    display: none;
 }
 
 * {
     text-decoration: none;
 }
 
-h1,
-ul {
+.header h1,
+.header ul {
     margin: 0;
     padding: 0;
 }
@@ -45,20 +45,13 @@ p {
 }
 
 .text-box {
-    margin-top: 60px;
     width: 50%;
-    margin-left: 22%;
-    padding: 2% 0;
 }
 
 .text-box>h1,
 .text-box>h2,
 .text-box>h3 {
     text-align: center;
-}
-
-.text-box>h1 {
-    margin-top: 40px;
 }
 
 .centered {
@@ -68,17 +61,33 @@ p {
 
 /* Header */
 .header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     min-height: 90px;
-    height: fit-contents;
+    height: fit-content;
     display: grid;
     grid-template-columns: 6.5em 9fr 1fr;
     cursor: default;
     align-items: center;
     z-index: 10;
+}
+
+.screen {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 95px);
+    margin-top: 95px;
+    justify-items: center;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.holder {
+    width: 100%;
+    height: 100%;
+    align-items: center;
 }
 
 .logo>img {
@@ -122,12 +131,9 @@ p {
 }
 
 /* Selection Grids */
-
 .selection-container {
     display: grid;
-    margin-top: 120px;
     height: auto;
-    padding: 10vh 0;
     grid-gap: 30px 10px;
     grid-template-columns: repeat(auto-fit, minmax(15vw, 1fr));
     justify-items: center;
@@ -144,17 +150,6 @@ p {
     position: relative;
     text-align: center;
     align-content: center;
-    align-items: center;
-    justify-items: center;
-}
-
-.tile>a {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: grid;
-    align-content: center;
-    justify-items: center;
 }
 
 .big-tile {
@@ -164,11 +159,19 @@ p {
     max-width: 45vh;
 }
 
+.big-tile>a:not(.mini-tile) {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+}
+
 .mini-tile {
     aspect-ratio: unset;
     position: absolute;
-    max-height: 33%;
-    height: 10%;
+    height: fit-content;
     min-width: 10%;
     width: fit-content;
     z-index: 1;
@@ -181,10 +184,15 @@ p {
     min-width: 30vw;
     max-height: 45vh;
     max-width: 90vh;
+    display: grid;
 }
 
 .long-tile>a {
+    aspect-ratio: 2/1;
+    display: grid;
     grid-template-columns: auto auto;
+    overflow: hidden;
+    align-content: center;
 }
 
 .small-tile {
@@ -208,7 +216,7 @@ img:hover {
 .no-zoom:hover {
     transform: none;
     filter: none;
-    cursor: default
+    cursor: default;
 }
 
 .small-tile>img,
@@ -301,7 +309,6 @@ img:hover {
 }
 
 /* Light & Dark Mode */
-
 .mode-toggle,
 .world-download,
 .pack-download,
@@ -334,7 +341,7 @@ img:hover {
 
 .pack-download {
     bottom: 20px;
-    right: 120px
+    right: 120px;
 }
 
 .mode-toggle:hover,
@@ -357,7 +364,6 @@ img:hover {
     background-color: #333;
     color: #fff;
     padding: 5px 10px;
-    text-wrap: nowrap;
     font-size: small;
 }
 
@@ -377,6 +383,7 @@ img:hover {
     content: "Skin File";
 }
 
+/* Fluid Background */
 .fluid {
     position: absolute;
     bottom: 12.3%;
@@ -385,7 +392,6 @@ img:hover {
     height: 50.5%;
     z-index: 1;
     background-color: transparent;
-    /* Make sure the fluid background is circular */
 }
 
 .fluid-image {
@@ -396,7 +402,6 @@ img:hover {
     height: 100%;
     z-index: 2;
     mix-blend-mode: multiply;
-    /* Blend the white fluid image with the background color */
 }
 
 .overlay {
@@ -408,13 +413,13 @@ img:hover {
     z-index: 3;
 }
 
+/* Responsive Media Queries */
 @media (max-width: 650px) {
-
     .selection-container {
         grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
     }
 
-    .tile {
+    .big-tile {
         min-height: 40vw;
         min-width: 40vw;
     }
@@ -429,6 +434,10 @@ img:hover {
     }
 
     .text-box {
-        margin-left: 10%;
+        width: 80%;
+    }
+
+    .rotate {
+        transform: scale(190%) rotate(90deg);
     }
 }

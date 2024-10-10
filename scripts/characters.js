@@ -76,7 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Create the HTML structure for a tile
                     const tile = document.createElement('div');
-                    tile.classList.add('tile', 'small-tile');
+                    // Add 'Nation' as a class to the tile (replacing spaces with hyphens)
+                    const nationClass = Nation.replace(/\s+/g, '-').toLowerCase();
+                    tile.classList.add('tile', 'small-tile', nationClass);
 
                     tile.innerHTML = `
                         <div class="large-font tile-text">${Name}</div>
@@ -110,8 +112,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     container.appendChild(tile);
                 }
 
+                // Sort by Nation first, then by Name
+                const sortedData = filteredData.slice().sort((a, b) => {
+                    const nationA = (a['Nation'] || '').toLowerCase();
+                    const nationB = (b['Nation'] || '').toLowerCase();
+                    const nameA = (a['Name'] || '').toLowerCase();
+                    const nameB = (b['Name'] || '').toLowerCase();
+
+                    if (nationA < nationB) return -1;
+                    if (nationA > nationB) return 1;
+                    return nameA.localeCompare(nameB);
+                });
+
                 // Render characters in batches for better performance
-                const sortedData = filteredData.slice().sort((a, b) => (a['Name'] || '').localeCompare(b['Name'] || ''));
                 let renderIndex = 0;
                 const renderBatchSize = 10; // Render in batches
 
@@ -126,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
 
-                // Start rendering immediately after filtering
+                // Start rendering immediately after filtering and sorting
                 renderNextBatch();
             })
             .catch(error => console.error('Error fetching data:', error));

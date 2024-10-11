@@ -151,7 +151,7 @@ p {
     text-align: center;
     align-content: center;
     outline-style: solid;
-    outline-width: 10px;
+    outline-width: 4px;
 }
 
 .big-tile {
@@ -262,7 +262,7 @@ img:hover {
     max-width: 400px;
     z-index: 999;
     outline-style: solid;
-    outline-width: 5px;
+    outline-width: 25px;
 }
 
 .container.show {

@@ -2,23 +2,19 @@
     outline-color: #646161;
 }
 
-.achæa, .alliance-of-independent-scientists {
+.achæa {
     outline-color: #ffffff;
 }
 
-.varian-empire, .eterna, .legion-of-sanguine, .the-brotherhood {
+.varian-empire {
     outline-color: #b60000;
 }
 
-.bastærnia, .zurtu, .khalidin {
-    outline-color: #C27C0E;
-}
-
-.prythonia, .meridion, .othium {
+.prythonia {
     outline-color: #1F8B4C;
 }
 
-.suaring, .valdelor, .hammaris, .new-moon-order {
+.suaring {
     outline-color: #206694;
 }
 
@@ -26,7 +22,35 @@
     outline-color: #71368A;
 }
 
-.ondor, .shuri, .hiraeth {
+.bastærnia {
+    outline-color: #C27C0E;
+}
+
+.valdelor {
+    outline-color: #206694;
+}
+
+.shuri {
+    outline-color: #e67d9c;
+}
+
+.zurtu {
+    outline-color: #C27C0E;
+}
+
+.khalidin {
+    outline-color: #C27C0E;
+}
+
+.meridion {
+    outline-color: #1F8B4C;
+}
+
+.hammaris {
+    outline-color: #206694;
+}
+
+.ondor {
     outline-color: #e67d9c;
 }
 
@@ -40,4 +64,36 @@
 
 .mara {
     outline-color: #ad41e7;
+}
+
+.alliance-of-independent-scientists {
+    outline-color: #ffffff;
+}
+
+.eterna, .legion-of-sanguine, .the-brotherhood {
+    outline-color: #b60000;
+}
+
+.othium {
+    outline-color: #1F8B4C;
+}
+
+.hiraeth {
+    outline-color: #e67d9c;
+}
+
+.sakari-order, .tunnelworker\'s-union {
+    outline-color: yellow;
+}
+
+.merchants-union {
+    outline-color: darkslategrey;
+}
+
+.the-gatesmen {
+    outline-color: #71368A;
+}
+
+.new-moon-order {
+    outline-color: #206694;
 }

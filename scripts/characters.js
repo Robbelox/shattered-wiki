@@ -76,9 +76,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Create the HTML structure for a tile
                     const tile = document.createElement('div');
-                    // Add 'Nation' as a class to the tile (replacing spaces with hyphens)
-                    const nationClass = Nation.replace(/\s+/g, '-').toLowerCase();
-                    tile.classList.add('tile', 'small-tile', nationClass);
+                    // Split the Nation string by comma, process each nation, and add as class
+                    const nationClasses = Nation.split(',').map(nation => nation.trim().replace(/\s+/g, '-').toLowerCase());
+
+                    tile.classList.add('tile', 'small-tile', ...nationClasses);
+
 
                     tile.innerHTML = `
                         <div class="large-font tile-text">${Name}</div>

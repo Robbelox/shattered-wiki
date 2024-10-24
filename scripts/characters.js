@@ -115,15 +115,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     return tile; // Return the created tile
                 }
 
-                // Sort by Nation first, then by Name
+                // Sort by Nation first (considering multiple nations), then by Name
                 const sortedData = filteredData.slice().sort((a, b) => {
-                    const nationA = (a['Nation'] || '').toLowerCase();
-                    const nationB = (b['Nation'] || '').toLowerCase();
+                    // Handle Nation comparison with multiple nations
+                    const nationsA = (a['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
+                    const nationsB = (b['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
+
+                    // Sort based on the first nation in both lists, then fallback to full comparison
+                    const firstNationComparison = nationsA[0].localeCompare(nationsB[0]);
+                    if (firstNationComparison !== 0) return firstNationComparison;
+
+                    // If the first nations are the same, sort based on all nations as a string
+                    const allNationsA = nationsA.join(',').toLowerCase();
+                    const allNationsB = nationsB.join(',').toLowerCase();
+                    const nationsComparison = allNationsA.localeCompare(allNationsB);
+                    if (nationsComparison !== 0) return nationsComparison;
+
+                    // If nations are the same, sort by Name
                     const nameA = (a['Name'] || '').toLowerCase();
                     const nameB = (b['Name'] || '').toLowerCase();
-
-                    if (nationA < nationB) return -1;
-                    if (nationA > nationB) return 1;
                     return nameA.localeCompare(nameB);
                 });
 

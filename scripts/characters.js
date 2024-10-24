@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const screen = document.querySelector('.screen'); // Get the screen div where containers will be added
+    const screen = document.querySelector('.screen-holder'); // Get the screen div where containers will be added
 
     // Function to hide all containers except the one related to the clicked tile
     function hideAllContainersExcept(clickedTile) {

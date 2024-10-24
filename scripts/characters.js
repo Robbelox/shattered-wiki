@@ -76,10 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Create the HTML structure for a tile
                     const tile = document.createElement('div');
-                    // Split the Nation string by comma, process each nation, and add as class
-                    const nationClasses = Nation.split(',').map(nation => nation.trim().replace(/\s+/g, '-').toLowerCase());
+                    // Split the Nation string, take the first nation for classification
+                    const primaryNation = Nation.split(',')[0].trim();
 
-                    tile.classList.add('tile', 'small-tile', ...nationClasses);
+                    // Use the primary nation as a class
+                    const nationClass = primaryNation.replace(/\s+/g, '-').toLowerCase();
+                    tile.classList.add('tile', 'small-tile', nationClass);
 
                     tile.innerHTML = `
                         <div class="large-font tile-text">${Name}</div>
@@ -135,25 +137,27 @@ document.addEventListener("DOMContentLoaded", function () {
                     const batch = sortedData.slice(renderIndex, renderIndex + renderBatchSize);
 
                     batch.forEach(entry => {
-                        const currentNation = entry['Nation'] || 'Unknown';
+                        const currentNation = entry['Nation'].split(',')[0].trim() || 'Unknown'; // Use the first nation
 
                         // Check if we are in a new nation group
                         if (currentNation !== lastRenderedNation) {
                             // Close the previous nation container if it exists
                             if (nationContainer) {
                                 screen.appendChild(nationContainer);
-                                // Add a <br> between different nation containers
-                                const nationBreak = document.createElement('br');
-                                screen.appendChild(nationBreak);
                             }
+
+                            // Add a break and title for the new nation
+                            const nationBreak = document.createElement('br');
+                            const nationTitle = document.createElement('h1');
+                            nationTitle.style.textAlign = 'center';
+                            nationTitle.textContent = currentNation;
+                            screen.appendChild(nationBreak);
+                            screen.appendChild(nationTitle);
 
                             // Create a new nation container
                             nationContainer = document.createElement('div');
                             nationContainer.classList.add('selection-container', 'holder');
                             nationContainer.setAttribute('id', `selection-container-${currentNation.replace(/\s+/g, '-').toLowerCase()}`);
-
-                            // Add a header for the nation
-                            nationContainer.innerHTML = `<strong>${currentNation}</strong><br>`;
 
                             // Update the last rendered nation
                             lastRenderedNation = currentNation;

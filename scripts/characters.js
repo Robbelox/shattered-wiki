@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     tile.classList.add('tile', 'small-tile', ...nationClasses);
 
-
                     tile.innerHTML = `
                         <div class="large-font tile-text">${Name}</div>
                         <img src="${Face}" alt="${Name}'s Face">
@@ -111,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     `;
 
-                    container.appendChild(tile);
+                    return tile; // Return the created tile
                 }
 
                 // Sort by Nation first, then by Name
@@ -129,10 +128,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Render characters in batches for better performance
                 let renderIndex = 0;
                 const renderBatchSize = 10; // Render in batches
+                let lastRenderedNation = ''; // Track the last rendered nation
+                let nationDiv; // Container for each nation's characters
 
                 function renderNextBatch() {
                     const batch = sortedData.slice(renderIndex, renderIndex + renderBatchSize);
-                    batch.forEach(entry => loadCharacter(entry));
+
+                    batch.forEach(entry => {
+                        const currentNation = entry['Nation'] || 'Unknown';
+
+                        // Check if we are in a new nation group
+                        if (currentNation !== lastRenderedNation) {
+                            // Close the previous nationDiv if it exists
+                            if (nationDiv) {
+                                container.appendChild(nationDiv);
+                                // Add a <br> between different nation blocks
+                                const nationBreak = document.createElement('br');
+                                container.appendChild(nationBreak);
+                            }
+
+                            // Create a new nation div
+                            nationDiv = document.createElement('div');
+                            nationDiv.classList.add('nation-group');
+                            nationDiv.innerHTML = `<strong>${currentNation}</strong><br>`;
+
+                            // Update the last rendered nation
+                            lastRenderedNation = currentNation;
+                        }
+
+                        // Append the character tile to the current nation div
+                        const characterTile = loadCharacter(entry);
+                        nationDiv.appendChild(characterTile);
+                    });
+
+                    // Append the last nation block after the loop finishes
+                    if (nationDiv) {
+                        container.appendChild(nationDiv);
+                    }
+
                     renderIndex += renderBatchSize;
 
                     // If more characters to render, load the next batch

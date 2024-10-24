@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const container = document.getElementById('selection-container'); // The container where tiles are dynamically added
+    const screen = document.querySelector('.screen'); // Get the screen div where containers will be added
 
     // Function to hide all containers except the one related to the clicked tile
     function hideAllContainersExcept(clickedTile) {
-        const tiles = container.querySelectorAll('.tile');
+        const tiles = document.querySelectorAll('.tile');
         tiles.forEach(tile => {
             const tileContainer = tile.querySelector('.container');
             if (tile !== clickedTile) {
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
             hideAllContainersExcept(tile);
         } else if (!clickedInsideContainer) {
             // Hide all containers if click is outside of any tile or container
-            const tiles = container.querySelectorAll('.tile');
+            const tiles = document.querySelectorAll('.tile');
             tiles.forEach(tile => {
                 tile.querySelector('.container').classList.remove('show');
             });
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 // Clear existing content
-                container.innerHTML = '';
+                screen.innerHTML = ''; // Clear the screen div
 
                 // Function to load characters
                 function loadCharacter(entry) {
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let renderIndex = 0;
                 const renderBatchSize = 10; // Render in batches
                 let lastRenderedNation = ''; // Track the last rendered nation
-                let nationDiv; // Container for each nation's characters
+                let nationContainer; // New container for each nation's tiles
 
                 function renderNextBatch() {
                     const batch = sortedData.slice(renderIndex, renderIndex + renderBatchSize);
@@ -139,31 +139,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         // Check if we are in a new nation group
                         if (currentNation !== lastRenderedNation) {
-                            // Close the previous nationDiv if it exists
-                            if (nationDiv) {
-                                container.appendChild(nationDiv);
-                                // Add a <br> between different nation blocks
+                            // Close the previous nation container if it exists
+                            if (nationContainer) {
+                                screen.appendChild(nationContainer);
+                                // Add a <br> between different nation containers
                                 const nationBreak = document.createElement('br');
-                                container.appendChild(nationBreak);
+                                screen.appendChild(nationBreak);
                             }
 
-                            // Create a new nation div
-                            nationDiv = document.createElement('div');
-                            nationDiv.classList.add('nation-group');
-                            nationDiv.innerHTML = `<strong>${currentNation}</strong><br>`;
+                            // Create a new nation container
+                            nationContainer = document.createElement('div');
+                            nationContainer.classList.add('selection-container', 'holder');
+                            nationContainer.setAttribute('id', `selection-container-${currentNation.replace(/\s+/g, '-').toLowerCase()}`);
+
+                            // Add a header for the nation
+                            nationContainer.innerHTML = `<strong>${currentNation}</strong><br>`;
 
                             // Update the last rendered nation
                             lastRenderedNation = currentNation;
                         }
 
-                        // Append the character tile to the current nation div
+                        // Append the character tile to the current nation container
                         const characterTile = loadCharacter(entry);
-                        nationDiv.appendChild(characterTile);
+                        nationContainer.appendChild(characterTile);
                     });
 
                     // Append the last nation block after the loop finishes
-                    if (nationDiv) {
-                        container.appendChild(nationDiv);
+                    if (nationContainer) {
+                        screen.appendChild(nationContainer);
                     }
 
                     renderIndex += renderBatchSize;

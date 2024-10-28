@@ -145,6 +145,15 @@ p {
     place-items: center;
 }
 
+.screen-holder>.selection-container {
+    display: flex;
+    height: auto;
+    grid-gap: 30px 10px;
+    place-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 .tile {
     object-fit: cover;
     aspect-ratio: 1/1;

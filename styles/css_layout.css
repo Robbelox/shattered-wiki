@@ -293,11 +293,21 @@ img:hover {
     height: auto;
 }
 
+.fullbody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .info,
 .info2 {
     margin: 20px;
     display: grid;
     grid-template-columns: 40% 60%;
+}
+
+.info-text {
+    padding: 2%
 }
 
 .info-text div {

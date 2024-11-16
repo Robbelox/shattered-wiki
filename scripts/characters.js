@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <img src="${Face}" alt="${Name}'s Face">
                         <div class="container">
                             <div class="info">
-                                <div>
+                                <div class="fullbody">
                                     <a href="${Skin}">
                                         <img src="${Body}" alt="Character Image">
                                     </a>

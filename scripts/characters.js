@@ -43,8 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let filteredData = data;
 
                 // Check if specific names are defined in the current HTML file
-                const isSpecificSelection = typeof selectedCharacterNames !== 'undefined' && selectedCharacterNames.length > 0;
-
+                const isSpecificSelection = typeof selectedCharacterNames !== 'undefined';
                 if (isSpecificSelection) {
                     filteredData = data.filter(entry =>
                         selectedCharacterNames.includes(entry['Name'])
@@ -121,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return tile; // Return the created tile
                 }
 
-                // Sort by Nation first, then by Name
+                // Sort the data alphabetically by name when specific characters are defined, otherwise by nation
                 const sortedData = filteredData.slice().sort((a, b) => {
                     const nameA = (a['Name'] || '').toLowerCase();
                     const nameB = (b['Name'] || '').toLowerCase();
@@ -136,6 +135,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     const nationsB = (b['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
                     const firstNationComparison = nationsA[0].localeCompare(nationsB[0]);
                     if (firstNationComparison !== 0) return firstNationComparison;
+
+                    const allNationsA = nationsA.join(',').toLowerCase();
+                    const allNationsB = nationsB.join(',').toLowerCase();
+                    const nationsComparison = allNationsA.localeCompare(allNationsB);
+                    if (nationsComparison !== 0) return nationsComparison;
 
                     return nameA.localeCompare(nameB);
                 });
@@ -152,26 +156,35 @@ document.addEventListener("DOMContentLoaded", function () {
                     batch.forEach(entry => {
                         const currentNation = entry['Nation'].split(',')[0].trim() || 'Unknown';
 
-                        if (!isSpecificSelection && currentNation !== lastRenderedNation) {
-                            if (nationContainer) {
+                        if (isSpecificSelection) {
+                            if (!nationContainer) {
+                                // Create the main container for specific characters
+                                nationContainer = document.createElement('div');
+                                nationContainer.classList.add('selection-container', 'holder');
+                                nationContainer.setAttribute('id', 'selection-container');
+                                nationContainer.style.padding = '50px 0';
                                 screen.appendChild(nationContainer);
                             }
-
-                            const nationTitle = document.createElement('h1');
-                            nationTitle.style.textAlign = 'center';
-                            nationTitle.textContent = currentNation;
-                            screen.appendChild(nationTitle);
-
-                            nationContainer = document.createElement('div');
-                            nationContainer.classList.add('selection-container', 'holder');
-                            nationContainer.setAttribute('id', `selection-container-${currentNation.replace(/\s+/g, '-').toLowerCase()}`);
-                            lastRenderedNation = currentNation;
-                        }
-
-                        const characterTile = loadCharacter(entry);
-                        if (isSpecificSelection) {
-                            screen.appendChild(characterTile);
+                            const characterTile = loadCharacter(entry);
+                            nationContainer.appendChild(characterTile);
                         } else {
+                            if (currentNation !== lastRenderedNation) {
+                                if (nationContainer) {
+                                    screen.appendChild(nationContainer);
+                                }
+
+                                const nationTitle = document.createElement('h1');
+                                nationTitle.style.textAlign = 'center';
+                                nationTitle.textContent = currentNation;
+                                screen.appendChild(nationTitle);
+
+                                nationContainer = document.createElement('div');
+                                nationContainer.classList.add('selection-container', 'holder');
+                                nationContainer.setAttribute('id', `selection-container-${currentNation.replace(/\s+/g, '-').toLowerCase()}`);
+                                lastRenderedNation = currentNation;
+                            }
+
+                            const characterTile = loadCharacter(entry);
                             nationContainer.appendChild(characterTile);
                         }
                     });

@@ -4,13 +4,30 @@
 <head>
     <base href="../../">
     <script src="scripts/mode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiki | Lore | Eldræanism</title>
+    <title>Wiki | Lore | Elyshi</title>
     <link rel="icon" type="image/x-icon" href="images/logo_sr.png">
     <link rel="stylesheet" href="styles/css_layout.css">
     <link id="theme-link" rel="stylesheet" href="styles/css_dark.css">
 </head>
+
+<script>
+    // Define the names of the characters to load
+    const selectedCharacterNames = [
+        "Kāre",
+        "Sten",
+        "Æthelstan",
+        "Hilda",
+        "Astrid",
+        "Nonus",
+        "Valor",
+        "Owyn",
+        "Karl",
+        "Artemios",
+    ];
+</script>
 
 <body>
     <div class="header">
@@ -55,14 +72,92 @@
     <!--Page under here-->
     <div class="screen2">
         <div class="text-box">
-            <h1>
-                
-            </h1>
-            <p>
+            <h1>Elyshi</h1>
 
+            <p>The <strong>Elyshi</strong> is a structured and expanding religion with a focus on creating detailed
+                spiritual practices and constructing awe-inspiring monuments across the world. Its mission centers on
+                growth, the enrichment of its traditions, and the beautification of the lands through its sacred
+                structures.</p>
+
+            <h2>Hierarchy and Ranks</h2>
+
+            <p>The Elyshi religion operates through a hierarchical system comprising five distinct ranks:
+                <strong>Disciple</strong>, <strong>Priest</strong>, <strong>High Priest</strong>, <strong>Head
+                    Priest</strong>, and <strong>Apostle</strong>. Each rank carries unique roles and responsibilities,
+                although all members contribute to the construction and resource gathering necessary for Temples and
+                High Temples.
             </p>
+
+            <h2>Disciples</h2>
+            <p>Disciples are the entry-level followers of the Elyshi faith. Their primary duty is to respond to calls
+                from Head Priests or higher-ranking officials, typically for significant events such as religious wars
+                or grand ceremonies. Beyond this, they are expected to avoid worshipping other deities.</p>
+
+            <h2>Priests</h2>
+            <p>At the rank of Priest, members begin taking an active role in the faith. Priests are compensated with one
+                coin for every person they successfully bring into the religion. Additional rewards, including coins or
+                diamonds, can be earned by completing tasks listed on the task board or by participating in temple
+                construction.</p>
+            <ul>
+                <li><strong>Altar Building:</strong> Priests can construct altars (minimum size: 5×5×5) for a reward of
+                    one coin. These altars must be built using prismarine and gold, and the reward is granted only once.
+                </li>
+            </ul>
+            <p>Priests must also participate in holy wars and receive a personalized staff as a symbol of their
+                position.</p>
+
+            <h2>High Priests</h2>
+            <p>High Priests retain the duties of Priests but gain additional privileges. They are tasked with building
+                larger temples (minimum size: 20×20×30), which earn five coins upon approval from a Head Priest or
+                Apostle. Temples must honor specific deities and adhere to detailed designs.</p>
+            <ul>
+                <li>High Priests are invited to participate in High Council meetings, where they may propose new ideas.
+                </li>
+            </ul>
+            <p>They receive an upgraded staff and a formal ceremony to mark their elevation.</p>
+
+            <h2>Head Priests</h2>
+            <p>Head Priests oversee the activities of High Priests and carry greater responsibilities. They are
+                authorized to supervise the construction of <strong>Grand Temples</strong> (minimum size: 80×80×80),
+                which are themed around specific gods and require prior approval in council meetings. Successfully
+                overseeing a Grand Temple project qualifies a Head Priest for potential promotion to Apostle.</p>
+            <ul>
+                <li>Head Priests are also required to attend weekly council meetings and must provide valid reasons for
+                    any absences.</li>
+            </ul>
+            <p>They are awarded high-tier ceremonial staff and robes, along with a grand ceremony at a completed Grand
+                Temple. Misuse of power by a Head Priest results in branding as a <strong>Traitor</strong>, with
+                execution mandated.</p>
+
+            <h2>Apostles</h2>
+            <p>Apostles represent the highest rank within the Elyshi hierarchy. To ascend to this position, a candidate
+                must meet specific criteria:</p>
+            <ul>
+                <li>Successfully oversee the construction of a Grand Temple or an equivalent project.</li>
+                <li>Maintain regular activity within the community.</li>
+                <li>Contribute to the religion beyond temple construction.</li>
+                <li>Hold the rank of Head Priest.</li>
+                <li>Recruit at least three new members.</li>
+            </ul>
+            <p>Once these requirements are fulfilled, the candidate is celebrated in a ceremony with mandatory
+                attendance by all Priests and higher ranks. Apostles are granted a personalized staff, their likeness
+                displayed in the Chamber of Apostles, and a unique title. They are also empowered to approve High Priest
+                promotions. Misconduct by an Apostle results in branding as a <strong>Traitor</strong> and immediate
+                execution.</p>
         </div>
+
+        <h1>
+            Members
+        </h1>
+
+        <div class="screen-holder" style="width: 100%;">
+            <div class="selection-container holder" id="selection-container" style="padding: 50px 0;">
+            </div>
+        </div>
+
     </div>
 </body>
+
+<script src="scripts/characters.js"></script>
 
 </html>

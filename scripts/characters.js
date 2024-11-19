@@ -121,20 +121,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Sort by Nation first, then by Name
                 const sortedData = filteredData.slice().sort((a, b) => {
-                    const nationsA = (a['Nation'] || '').toLowerCase().split(',').map(n => n.trim());
-                    const nationsB = (b['Nation'] || '').toLowerCase().split(',').map(n => n.trim());
+                    const nameA = (a['Name'] || '').toLowerCase();
+                    const nameB = (b['Name'] || '').toLowerCase();
+                
+                    if (selectedCharacterNames.length > 0) {
+                        // Sort alphabetically by name if specific characters are defined
+                        return nameA.localeCompare(nameB);
+                    }
+                
+                    // Default sorting by nation and then name
+                    const nationsA = (a['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
+                    const nationsB = (b['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
                     const firstNationComparison = nationsA[0].localeCompare(nationsB[0]);
                     if (firstNationComparison !== 0) return firstNationComparison;
-
+                
                     const allNationsA = nationsA.join(',').toLowerCase();
                     const allNationsB = nationsB.join(',').toLowerCase();
                     const nationsComparison = allNationsA.localeCompare(allNationsB);
                     if (nationsComparison !== 0) return nationsComparison;
-
-                    const nameA = (a['Name'] || '').toLowerCase();
-                    const nameB = (b['Name'] || '').toLowerCase();
+                
                     return nameA.localeCompare(nameB);
-                });
+                });              
 
                 // Render characters in batches
                 let renderIndex = 0;
@@ -153,11 +160,13 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
 
                             const nationBreak = document.createElement('br');
-                            const nationTitle = document.createElement('h1');
-                            nationTitle.style.textAlign = 'center';
-                            nationTitle.textContent = currentNation;
-                            screen.appendChild(nationBreak);
-                            screen.appendChild(nationTitle);
+                            if (selectedCharacterNames.length === 0) {
+                                const nationTitle = document.createElement('h1');
+                                nationTitle.style.textAlign = 'center';
+                                nationTitle.textContent = currentNation;
+                                screen.appendChild(nationTitle);
+                            }
+                            
 
                             nationContainer = document.createElement('div');
                             nationContainer.classList.add('selection-container', 'holder');

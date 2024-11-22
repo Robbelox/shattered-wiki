@@ -42,31 +42,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 let filteredData = data;
 
-                // Apply filters based on the parameters defined above
-                if (selectedCharacterNames.length > 0) {
-                    filteredData = filteredData.filter(entry =>
+                // Check if specific names are defined in the current HTML file
+                const isSpecificSelection = typeof selectedCharacterNames !== 'undefined';
+                if (isSpecificSelection) {
+                    filteredData = data.filter(entry =>
                         selectedCharacterNames.includes(entry['Name'])
                     );
+                } else {
+                    // Apply filters based on the HTML file name
+                    const pathname = window.location.pathname;
+                    if (pathname.includes('characters-sw.html')) {
+                        filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered World 1'));
+                    } else if (pathname.includes('characters-sw2.html')) {
+                        filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered World 2'));
+                    } else if (pathname.includes('characters-sr.html')) {
+                        filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered Realms'));
+                    } else if (pathname.includes('characters-sc.html')) {
+                        filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered Crown'));
+                    } else if (pathname.includes('characters-iteria.html')) {
+                        filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Tales of Iteria'));
+                    }
                 }
-
-                if (selectedServers.length > 0) {
-                    filteredData = filteredData.filter(entry =>
-                        selectedServers.some(server => entry['Server'] && entry['Server'].includes(server))
-                    );
-                }
-
-                if (selectedSpecies.length > 0) {
-                    filteredData = filteredData.filter(entry =>
-                        selectedSpecies.some(species => entry['Species'] && entry['Species'].includes(species))
-                    );
-                }
-
-                // Add additional filters here, e.g., for Occupation, Nation, etc.
-                // if (selectedOccupations.length > 0) {
-                //     filteredData = filteredData.filter(entry =>
-                //         selectedOccupations.some(occupation => entry['Occupation'] && entry['Occupation'].includes(occupation))
-                //     );
-                // }
 
                 screen.innerHTML = ''; // Clear the screen div
 
@@ -124,10 +120,27 @@ document.addEventListener("DOMContentLoaded", function () {
                     return tile; // Return the created tile
                 }
 
-                // Sort the data alphabetically by name
+                // Sort the data alphabetically by name when specific characters are defined, otherwise by nation
                 const sortedData = filteredData.slice().sort((a, b) => {
                     const nameA = (a['Name'] || '').toLowerCase();
                     const nameB = (b['Name'] || '').toLowerCase();
+
+                    if (isSpecificSelection) {
+                        // Sort alphabetically by name if specific characters are defined
+                        return nameA.localeCompare(nameB);
+                    }
+
+                    // Default sorting by nation and then name
+                    const nationsA = (a['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
+                    const nationsB = (b['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
+                    const firstNationComparison = nationsA[0].localeCompare(nationsB[0]);
+                    if (firstNationComparison !== 0) return firstNationComparison;
+
+                    const allNationsA = nationsA.join(',').toLowerCase();
+                    const allNationsB = nationsB.join(',').toLowerCase();
+                    const nationsComparison = allNationsA.localeCompare(allNationsB);
+                    if (nationsComparison !== 0) return nationsComparison;
+
                     return nameA.localeCompare(nameB);
                 });
 
@@ -143,15 +156,42 @@ document.addEventListener("DOMContentLoaded", function () {
                     batch.forEach(entry => {
                         const currentNation = entry['Nation'].split(',')[0].trim() || 'Unknown';
 
-                        if (!nationContainer) {
-                            nationContainer = document.createElement('div');
-                            nationContainer.classList.add('selection-container', 'holder');
-                            screen.appendChild(nationContainer);
-                        }
+                        if (isSpecificSelection) {
+                            if (!nationContainer) {
+                                // Create the main container for specific characters
+                                nationContainer = document.createElement('div');
+                                nationContainer.classList.add('selection-container', 'holder');
+                                nationContainer.setAttribute('id', 'selection-container');
+                                nationContainer.style.padding = '50px 0';
+                                screen.appendChild(nationContainer);
+                            }
+                            const characterTile = loadCharacter(entry);
+                            nationContainer.appendChild(characterTile);
+                        } else {
+                            if (currentNation !== lastRenderedNation) {
+                                if (nationContainer) {
+                                    screen.appendChild(nationContainer);
+                                }
 
-                        const characterTile = loadCharacter(entry);
-                        nationContainer.appendChild(characterTile);
+                                const nationTitle = document.createElement('h1');
+                                nationTitle.style.textAlign = 'center';
+                                nationTitle.textContent = currentNation;
+                                screen.appendChild(nationTitle);
+
+                                nationContainer = document.createElement('div');
+                                nationContainer.classList.add('selection-container', 'holder');
+                                nationContainer.setAttribute('id', `selection-container-${currentNation.replace(/\s+/g, '-').toLowerCase()}`);
+                                lastRenderedNation = currentNation;
+                            }
+
+                            const characterTile = loadCharacter(entry);
+                            nationContainer.appendChild(characterTile);
+                        }
                     });
+
+                    if (nationContainer && !isSpecificSelection) {
+                        screen.appendChild(nationContainer);
+                    }
 
                     renderIndex += renderBatchSize;
 

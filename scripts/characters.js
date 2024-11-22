@@ -25,6 +25,11 @@ function fetchGoogleSheetData() {
                 });
             });
 
+            // If no filters apply, show all characters
+            if (Object.values(filters).every(filter => !filter)) {
+                filteredData = data; // Show everything
+            }
+
             screen.innerHTML = ''; // Clear the screen div
 
             // Function to create a character tile

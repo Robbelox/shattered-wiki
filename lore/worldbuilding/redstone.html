@@ -2,11 +2,12 @@
 <html>
 
 <head>
-    <base href="../">
+    <base href="../../">
     <script src="scripts/mode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiki | Lore</title>
+    <title>Wiki | Lore | Redstone</title>
     <link rel="icon" type="image/x-icon" href="images/logo_sr.png">
     <link rel="stylesheet" href="styles/css_layout.css">
     <link id="theme-link" rel="stylesheet" href="styles/css_dark.css">
@@ -15,13 +16,13 @@
 <body>
     <div class="header">
         <a href="index.html">
-            <div class="logo"><img src="images/logo_sr.png"></div>
+            <div class="logo"><img style="border-radius: 100%;" src="images/logo_sr.png"></div>
         </a>
         <div>
-            <h1>Shattered Wiki | Lore</h1>
+            <h1>Shattered Wiki | Redstone</h1>
             <nav>
                 <ul>
-                    <div style="color: orange;">Lore</div>
+                    <a style="color: orange;" href="main-pages/lore.html" class="dropdown-toggle">Lore</a>
                     <div class="dropdown">
                         <li class="dropdown-toggle">Ayka</li>
                         <div class="dropdown-content">
@@ -53,37 +54,34 @@
     </button>
 
     <!--Page under here-->
-    <div class="screen" style="align-items: center;">
-        <div class="selection-container holder">
+    <div class="screen2">
 
-            <div class="tile big-tile">
-                <a href="lore/brews.html">
-                    <div class="large-font tile-text" style="top: 45%">Brews</div>
-                </a>
-                <a class="tile mini-tile" style="bottom: 5%;" href="lore/brewery-info.html">Info</a>
-            </div>
+        <div class="text-box">
 
-            <div class="tile big-tile">
-                <a href="lore/religions.html">
-                    <div class="large-font tile-text" style="top: 45%">Religions</div>
-                </a>
-            </div>
+            <h1>
+                About
+            </h1>
+            <p>A naturally occurring material that is inherently magically charged. Unlike electricity, it's charge can
+                be maintained by passively absorbing faint magical energies in the environment. It can be toxic if
+                ingested in large quantities, but in smaller amounts has been used as a strong spice on foods and in
+                drinks.</p>
 
-            <div class="tile big-tile">
-                <a href="lore/species.html">
-                    <div class="large-font tile-text" style="top: 45%">Species</div>
-                </a>
-            </div>
+            <h1>Electricity</h1>
+            <p>Despite misconceptions, electricity and redstone are almost entirely unrelated. Redstone is capable of
+                holding a brief electrical charge, however it is extremely inefficient at conducting electricity.</p>
 
-            <div class="tile big-tile">
-                <a href="lore/worldbuilding.html">
-                    <div class="large-font tile-text" style="top: 45%">Worldbuilding</div>
-                </a>
-            </div>
+            <h1>Sickness</h1>
+            <p>It is not uncommon for those who often work with redstone in enclosed spaces to inhale it. If not
+                properly prevented or treated, these redstone particles can clump and re-crystalize, creating
+                long-lasting respiratory issues. In severe cases, this can lead to death.</p>
 
+            <h1>Alchemy Uses</h1>
+            <p>When used in brewing potions, redstone powder is known to extend the duration of the concoction. This is
+                done by acting as a form of magical sponge, absorbing the effect of the brew, and releasing that effect
+                over a longer period of time as the body metabolizes the dust.</p>
         </div>
-    </div>
 
+    </div>
 </body>
 
 </html>

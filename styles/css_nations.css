@@ -1,5 +1,5 @@
 .kurgan {
-    outline-color: #fffffe;
+    outline-color: #3f3f3f;
 }
 
 .achæa {
@@ -43,11 +43,11 @@
 }
 
 .meridion {
-    outline-color: #262625;
+    outline-color: #527f2e;
 }
 
 .hammaris {
-    outline-color: #e5e5e5;
+    outline-color: #007b9b;
 }
 
 .ondor {
@@ -66,46 +66,78 @@
     outline-color: #622483;
 }
 
-.alliance-of-independent-scientists {
-    outline-color: #e5e5e5;
-}
-
-.eterna {
-    outline-color: #8c1111;
+.brotherhoods {
+    outline-color: #611111;
 }
 
 .legion-of-sanguine {
-    outline-color: #7c1111;
+    outline-color: #ac0d0d;
 }
 
-.brotherhood {
-    outline-color: #000000;
+.eterna {
+    outline-color: #e05555;
 }
 
-.othium {
-    outline-color: #1e1b1c;
+.broken-barrel {
+    outline-color: #ca944c;
 }
 
-.hiraeth {
-    outline-color: #3ab3da;
+.novarian-empire {
+    outline-color: #9b8228;
 }
 
 .sakari-order {
-    outline-color: #ecd708;
+    outline-color: #dbcb71;
 }
 
 .tunnelworker\'s-union {
-    outline-color: #939393;
+    outline-color: #fffc00;
 }
 
-.merchants-union {
-    outline-color: darkslategrey;
+.settlers {
+    outline-color: #2ECC71;
 }
 
-.the-gatesmen {
-    outline-color: #000000;
+.commandments {
+    outline-color: #188c58;
+}
+
+.othium {
+    outline-color: #375f08;
 }
 
 .new-moon-order {
-    outline-color: #890794;
+    outline-color: #7cb9c2;
+}
+
+.konnustai-clan {
+    outline-color: #3498DB;
+}
+
+.sect-of-the-fallen-one {
+    outline-color: #546E7A;
+}
+
+.kingdom-of-ashai {
+    outline-color: #000049;
+}
+
+.merchants-union {
+    outline-color: #22102c;
+}
+
+.the-gatesmen {
+    outline-color: #aa00aa;
+}
+
+.hiraeth {
+    outline-color: #ff77b0;
+}
+
+.alliance-of-independent-scientists {
+    outline-color: #d8e2e7;
+}
+
+.nationless {
+    outline-color: rgb(70, 70, 169);
 }

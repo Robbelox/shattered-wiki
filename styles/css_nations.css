@@ -66,7 +66,7 @@
     outline-color: #622483;
 }
 
-.brotherhoods {
+.brotherhood {
     outline-color: #611111;
 }
 
@@ -102,6 +102,10 @@
     outline-color: #188c58;
 }
 
+.oberon-island {
+    outline-color: #465730;
+}
+
 .othium {
     outline-color: #375f08;
 }
@@ -114,7 +118,7 @@
     outline-color: #3498DB;
 }
 
-.sect-of-the-fallen-one {
+.sect-of-the-fallen-one, .shadowhoods {
     outline-color: #546E7A;
 }
 
@@ -140,4 +144,8 @@
 
 .nationless {
     outline-color: rgb(70, 70, 169);
+}
+
+.\.deity\. {
+    outline-color: #ffffff;
 }

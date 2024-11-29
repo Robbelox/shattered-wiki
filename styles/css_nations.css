@@ -1,99 +1,139 @@
 .kurgan {
-    outline-color: #646161;
+    outline-color: #3e3e3f;
+    background: #fffffe;
 }
 
 .achæa {
     outline-color: #ffffff;
+    background: #1c2756;
 }
 
 .varian-empire {
-    outline-color: #b60000;
+    outline-color: #f6d24d;
+    background: #871e15;
 }
 
 .prythonia {
-    outline-color: #1F8B4C;
+    outline-color: #000000;
+    background: #253e12;
 }
 
 .suaring {
-    outline-color: #206694;
+    outline-color: #3c2511;
+    background: #376186;
 }
 
-.osterwalde, .the-gatesmen {
-    outline-color: #71368A;
+.osterwalde {
+    outline-color: #000000;
+    background: #4d246c;
 }
 
 .bastærnia {
-    outline-color: #C27C0E;
+    outline-color: #e5bf28;
+    background: #e67f26;
 }
 
 .valdelor {
-    outline-color: #206694;
+    outline-color: #a1a1a1;
+    background: #203e5f;
 }
 
 .shuri {
-    outline-color: #e67d9c;
+    outline-color: #a72422;
+    background: #ffffff;
 }
 
 .zurtu {
-    outline-color: #C27C0E;
+    outline-color: #e5bf28;
+    background: #e67f26;
 }
 
 .khalidin {
-    outline-color: #C27C0E;
+    outline-color: #fcc505;
+    background: #ee7202;
 }
 
 .meridion {
-    outline-color: #1F8B4C;
+    outline-color: #527f2e;
+    background: #262625;
 }
 
 .hammaris {
-    outline-color: #206694;
+    outline-color: #007b9b;
+    background: #e5e5e5;
 }
 
 .ondor {
-    outline-color: #e67d9c;
+    outline-color: #ffffff;
+    background: #e67d9c;
 }
 
 .pakaroo {
-    outline-color: #76c50e;
+    outline-color: #3c600a;
+    background: #5d9f04;
 }
 
 .lutova {
-    outline-color: #e7962c;
+    outline-color: #ffd62d;
+    background: #ff780b;
 }
 
 .mara {
-    outline-color: #ad41e7;
+    outline-color: #4ba0b2;
+    background: #622483;
 }
 
 .alliance-of-independent-scientists {
     outline-color: #ffffff;
+    background: #e5e5e5;
 }
 
-.eterna, .legion-of-sanguine, .the-brotherhood {
-    outline-color: #b60000;
+.eterna {
+    outline-color: #fbd405;
+    background: #8c1111;
+}
+
+.legion-of-sanguine {
+    outline-color: #e0d3d0;
+    background: #7c1111;
+}
+
+.brotherhood {
+    outline-color: #9b0909;
+    background: #000000;
 }
 
 .othium {
-    outline-color: #1F8B4C;
+    outline-color: #6a9c47;
+    background: #1e1b1c;
 }
 
 .hiraeth {
-    outline-color: #e67d9c;
+    outline-color: #ffffff;
+    background: #3ab3da;
 }
 
-.sakari-order, .tunnelworker\'s-union {
-    outline-color: yellow;
+.sakari-order {
+    outline-color: #000000;
+    background: #ecd708;
+}
+
+.tunnelworker\'s-union {
+    outline-color: #dcbc3c;
+    background: #939393;
 }
 
 .merchants-union {
-    outline-color: darkslategrey;
+    outline-color: #000000;
+    background: darkslategrey;
 }
 
 .the-gatesmen {
-    outline-color: #71368A;
+    outline-color: #7a00b2;
+    background: #000000;
 }
 
 .new-moon-order {
-    outline-color: #206694;
+    outline-color: #cf5092;
+    background: #890794;
 }

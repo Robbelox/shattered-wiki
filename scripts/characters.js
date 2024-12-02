@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     renderIndex += renderBatchSize;
 
                     if (renderIndex < sortedData.length) {
-                        setTimeout(renderNextBatch, 50);
+                        setTimeout(renderNextBatch, 100);
                     }
                 }
 

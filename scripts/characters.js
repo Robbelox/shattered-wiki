@@ -147,15 +147,24 @@ document.addEventListener("DOMContentLoaded", function () {
                         slides[index].classList.add('show');
                     }
 
-                    prevButton.addEventListener('click', function () {
-                        currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Wrap around
-                        showSlide(currentIndex);
-                    });
+                    // Only add functionality and show arrows if there is more than one skin
+                    if (slides.length > 1) {
+                        prevButton.style.display = 'block'; // Show the previous button
+                        nextButton.style.display = 'block'; // Show the next button
 
-                    nextButton.addEventListener('click', function () {
-                        currentIndex = (currentIndex + 1) % slides.length; // Wrap around
-                        showSlide(currentIndex);
-                    });
+                        prevButton.addEventListener('click', function () {
+                            currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Wrap around
+                            showSlide(currentIndex);
+                        });
+
+                        nextButton.addEventListener('click', function () {
+                            currentIndex = (currentIndex + 1) % slides.length; // Wrap around
+                            showSlide(currentIndex);
+                        });
+                    } else {
+                        prevButton.style.display = 'none'; // Hide the previous button
+                        nextButton.style.display = 'none'; // Hide the next button
+                    }
 
                     return tile;
                 }

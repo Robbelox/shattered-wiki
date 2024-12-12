@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const screen = document.querySelector('.screen-holder'); // Get the screen div where containers will be added
 
-    // Function to hide all containers except the one related to the clicked tile
     function hideAllContainersExcept(clickedTile) {
         const tiles = document.querySelectorAll('.tile');
         tiles.forEach(tile => {
@@ -12,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Event delegation for click events on tiles and containers
     document.addEventListener('click', function (event) {
         const clickedElement = event.target;
         const tile = clickedElement.closest('.tile');
@@ -23,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
             tileContainer.classList.toggle('show');
             hideAllContainersExcept(tile);
         } else if (!clickedInsideContainer) {
-            // Hide all containers if click is outside of any tile or container
             const tiles = document.querySelectorAll('.tile');
             tiles.forEach(tile => {
                 tile.querySelector('.container').classList.remove('show');
@@ -31,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Function to fetch and render the Google Sheet data
     function fetchGoogleSheetData() {
         const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRqt2jpKBxKcScnjwpK-rUcL1RpEXRoJ4cOmTOHJjIMlS--I61Aca2H9upkJOIF6r3Q1eZMPcwlSqsv/pub?output=csv';
 
@@ -42,14 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 let filteredData = data;
 
-                // Check if specific names are defined in the current HTML file
                 const isSpecificSelection = typeof selectedCharacterNames !== 'undefined';
                 if (isSpecificSelection) {
                     filteredData = data.filter(entry =>
                         selectedCharacterNames.includes(entry['Name'])
                     );
                 } else {
-                    // Apply filters based on the HTML file name
                     const pathname = window.location.pathname;
                     if (pathname.includes('characters-sw.html')) {
                         filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered World 1'));
@@ -66,12 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 screen.innerHTML = ''; // Clear the screen div
 
-                // Function to load characters
                 function loadCharacter(entry) {
                     const Name = entry['Name'] || 'Unknown';
                     const Face = convertToDirectLink(entry['Face']);
-                    const Body = convertToDirectLink(entry['Body']);
-                    const Skin = convertToDirectLink(entry['Skin']);
+                    const BodyLinks = (entry['Body'] || '').split(',').map(link => convertToDirectLink(link.trim()));
+                    const SkinLinks = (entry['Skin'] || '').split(',').map(link => link.trim());
                     const FullName = entry['Full Name'] || 'Unknown';
                     const BirthYear = entry['Birth Year'] || 'Unknown';
                     const DeathYear = entry['Death Year'] || 'Unknown';
@@ -82,11 +75,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     const Player = entry['Played By'] || 'Unknown';
                     const Description = convertToParagraphs(entry['Description']);
 
-                    // Create the HTML structure for a tile
                     const tile = document.createElement('div');
                     const primaryNation = Nation.split(',')[0].trim();
                     const nationClass = primaryNation.replace(/\s+/g, '-').toLowerCase();
                     tile.classList.add('tile', 'small-tile', nationClass);
+
+                    // Create Swiper container for Body and Skin links
+                    const bodySlides = BodyLinks.map((bodyLink, index) => `
+                        <div class="swiper-slide">
+                            <a href="${SkinLinks[index] || '#'}" target="_blank">
+                                <img src="${bodyLink}" alt="Character Skin">
+                            </a>
+                        </div>
+                    `).join('');
 
                     tile.innerHTML = `
                         <div class="large-font tile-text">${Name}</div>
@@ -94,9 +95,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="container">
                             <div class="info">
                                 <div class="fullbody">
-                                    <a href="${Skin}">
-                                        <img src="${Body}" alt="Character Image">
-                                    </a>
+                                    <div class="swiper-container">
+                                        <div class="swiper-wrapper">
+                                            ${bodySlides}
+                                        </div>
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
                                 </div>
                                 <div class="info-text">
                                     <div style="font-size: x-large;"><strong>${FullName}</strong></div>
@@ -117,20 +123,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     `;
 
-                    return tile; // Return the created tile
+                    return tile;
                 }
 
-                // Sort the data alphabetically by name when specific characters are defined, otherwise by nation
                 const sortedData = filteredData.slice().sort((a, b) => {
                     const nameA = (a['Name'] || '').toLowerCase();
                     const nameB = (b['Name'] || '').toLowerCase();
 
                     if (isSpecificSelection) {
-                        // Sort alphabetically by name if specific characters are defined
                         return nameA.localeCompare(nameB);
                     }
 
-                    // Default sorting by nation and then name
                     const nationsA = (a['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
                     const nationsB = (b['Nation'] || '').toLowerCase().split(',').map(nation => nation.trim());
                     const firstNationComparison = nationsA[0].localeCompare(nationsB[0]);
@@ -144,7 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     return nameA.localeCompare(nameB);
                 });
 
-                // Render characters in batches
                 let renderIndex = 0;
                 const renderBatchSize = 10;
                 let lastRenderedNation = '';
@@ -158,7 +160,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         if (isSpecificSelection) {
                             if (!nationContainer) {
-                                // Create the main container for specific characters
                                 nationContainer = document.createElement('div');
                                 nationContainer.classList.add('selection-container', 'holder');
                                 nationContainer.setAttribute('id', 'selection-container');

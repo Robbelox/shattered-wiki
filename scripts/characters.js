@@ -18,9 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (tile) {
             const tileContainer = tile.querySelector('.container');
-            tileContainer.classList.toggle('show');
-            hideAllContainersExcept(tile);
+            const isOpen = tileContainer.classList.contains('show');
+
+            if (!isOpen) {
+                // If the container is not open, open it and close others
+                tileContainer.classList.add('show');
+                hideAllContainersExcept(tile);
+            } else {
+                // If the container is already open, do nothing on click inside
+            }
         } else if (!clickedInsideContainer) {
+            // Close all containers if the click is outside any container
             const tiles = document.querySelectorAll('.tile');
             tiles.forEach(tile => {
                 tile.querySelector('.container').classList.remove('show');
@@ -99,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         <div class="swiper-wrapper">
                                             ${bodySlides}
                                         </div>
+                                        <!-- Swiper buttons for navigation -->
                                         <div class="swiper-button-next"></div>
                                         <div class="swiper-button-prev"></div>
                                         <div class="swiper-pagination"></div>
@@ -122,6 +131,19 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     `;
+
+                    // Initialize Swiper after the HTML content is inserted
+                    const swiper = new Swiper(tile.querySelector('.swiper-container'), {
+                        loop: true, // Allow looping through the skins
+                        navigation: {
+                            nextEl: tile.querySelector('.swiper-button-next'),
+                            prevEl: tile.querySelector('.swiper-button-prev'),
+                        },
+                        pagination: {
+                            el: tile.querySelector('.swiper-pagination'),
+                            clickable: true,
+                        },
+                    });
 
                     return tile;
                 }

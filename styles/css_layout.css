@@ -482,7 +482,7 @@ img:hover {
 .swiper-navigation {
     position: absolute;
     top: 50%; /* Vertically center the arrows */
-    width: 100%;
+    width: 40%;
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%); /* Correct vertical centering */
@@ -490,7 +490,6 @@ img:hover {
 
 /* Individual arrow positioning */
 .swiper-button-prev, .swiper-button-next {
-    font-size: 3rem; /* Set the size of the emojis */
     cursor: pointer; /* Pointer cursor for interactivity */
     padding: 0.5rem; /* Add some padding around the emoji */
 }

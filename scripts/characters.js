@@ -15,22 +15,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const clickedElement = event.target;
         const tile = clickedElement.closest('.tile');
         const clickedInsideContainer = clickedElement.closest('.container');
-        const clickedInsideTile = clickedElement.closest('.tile');
 
-        // If the clicked element is inside a tile (and not inside its container), toggle container
+        // If the click is inside a tile, toggle the container
         if (tile && !clickedInsideContainer) {
             const tileContainer = tile.querySelector('.container');
             const isOpen = tileContainer.classList.contains('show');
 
-            if (!isOpen) {
-                // If the container is not open, open it and close others
+            // Toggle container visibility
+            if (isOpen) {
+                tileContainer.classList.remove('show');
+            } else {
                 tileContainer.classList.add('show');
-                hideAllContainersExcept(tile);
+                hideAllContainersExcept(tile); // Hide all other containers
             }
-            // If it's already open, we do nothing here when clicking the tile itself
         } 
-        // If the click happens outside any container, close all containers
-        else if (!clickedInsideContainer && !clickedInsideTile) {
+        // If the click is outside any container, close all containers
+        else if (!clickedInsideContainer) {
             const tiles = document.querySelectorAll('.tile');
             tiles.forEach(tile => {
                 tile.querySelector('.container').classList.remove('show');
@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Initialize Swiper after the HTML content is inserted
                     const swiper = new Swiper(tile.querySelector('.swiper-container'), {
                         loop: true, // Allow looping through the skins
+                        slidesPerView: 1, // Show only one slide at a time
                         navigation: {
                             nextEl: tile.querySelector('.swiper-button-next'),
                             prevEl: tile.querySelector('.swiper-button-prev'),

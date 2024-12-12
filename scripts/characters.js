@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Create content for Body and Skin links
                     const bodySlides = BodyLinks.map((bodyLink, index) => `
-                        <div class="body-slide">
+                        <div class="body-slide ${index === 0 ? 'show' : ''}">
                             <a href="${SkinLinks[index] || '#'}" target="_blank">
                                 <img src="${bodyLink}" alt="Character Skin">
                             </a>
@@ -107,6 +107,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <div class="fullbody">
                                     <div class="body-slides">
                                         ${bodySlides}
+                                    </div>
+                                    <div class="swiper-navigation">
+                                        <div class="swiper-button-prev">◀️</div>
+                                        <div class="swiper-button-next">▶️</div>
                                     </div>
                                 </div>
                                 <div class="info-text">
@@ -127,6 +131,31 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     `;
+
+                    // Adding the functionality to switch slides
+                    const prevButton = tile.querySelector('.swiper-button-prev');
+                    const nextButton = tile.querySelector('.swiper-button-next');
+                    const slides = tile.querySelectorAll('.body-slide');
+                    let currentIndex = 0;
+
+                    function showSlide(index) {
+                        // Hide all slides
+                        slides.forEach((slide, i) => {
+                            slide.classList.remove('show');
+                        });
+                        // Show the current slide
+                        slides[index].classList.add('show');
+                    }
+
+                    prevButton.addEventListener('click', function () {
+                        currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Wrap around
+                        showSlide(currentIndex);
+                    });
+
+                    nextButton.addEventListener('click', function () {
+                        currentIndex = (currentIndex + 1) % slides.length; // Wrap around
+                        showSlide(currentIndex);
+                    });
 
                     return tile;
                 }

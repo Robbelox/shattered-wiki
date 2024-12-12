@@ -298,55 +298,53 @@ img:hover {
     height: auto;
 }
 
-.text-box>p>img {
-    width: 30%;
-    height: auto;
-}
-
-.fullbody {
+/* Add this for the stacked layout of skins */
+.skin-stack-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.info,
-.info2 {
-    margin: 20px;
-    display: grid;
-    grid-template-columns: 40% 60%;
+.skin-stack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none; /* Hide all skins by default */
+    transition: opacity 0.3s ease; /* For smooth transition */
 }
 
-.info-text {
-    padding: 2%
+.skin-stack.active {
+    display: block; /* Only show the active skin */
+    opacity: 1;
 }
 
-.info-text div {
-    font-size: 18px;
+.skin-stack.hidden {
+    opacity: 0; /* Hide the non-active skins smoothly */
 }
 
-.info-text div strong {
-    font-weight: bold;
+/* Navigation buttons (left and right arrows) */
+.skin-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
 }
 
-.description {
-    margin: 20px;
-    text-align: justify;
-    -moz-text-align-last: center;
-    text-align-last: center;
-    height: 200px;
-    overflow: auto;
-    font-size: 11px;
+.skin-nav-button-prev {
+    left: 10px;
 }
 
-.description::-webkit-scrollbar {
-    display: none;
-}
-
-
-.double-column {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    align-items: center;
+.skin-nav-button-next {
+    right: 10px;
 }
 
 /* Light & Dark Mode */
@@ -453,55 +451,6 @@ img:hover {
     height: 100%;
     z-index: 3;
 }
-
-/* Ensure that the swiper container takes up space */
-.swiper-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-/* Hide overflowed images, so only one image appears at a time */
-.swiper-wrapper {
-    display: flex;
-    overflow: hidden;
-}
-
-/* Ensure slides are aligned horizontally */
-.swiper-slide {
-    flex-shrink: 0;
-    width: 100%; /* Adjust the width depending on how you want the images to fit */
-}
-
-/* Style the navigation arrows */
-.swiper-button-next, .swiper-button-prev {
-    color: white;
-    position: absolute;
-    top: 50%;
-    z-index: 10;
-    transform: translateY(-50%);
-    font-size: 24px;
-}
-
-/* Position the next and previous buttons */
-.swiper-button-next {
-    right: 10px;
-}
-
-.swiper-button-prev {
-    left: 10px;
-}
-
-/* Style pagination dots */
-.swiper-pagination {
-    position: absolute;
-    bottom: 10px;
-    text-align: center;
-    width: 100%;
-    z-index: 10;
-}
-
-
 
 /* Responsive Media Queries */
 @media (max-width: 650px) {

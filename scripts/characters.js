@@ -110,8 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                             ${bodySlides}
                                         </div>
                                         <!-- Swiper buttons for navigation -->
-                                        <div class="swiper-button-next"></div>
-                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next">▶️</div>
+                                        <div class="swiper-button-prev">◀️</div>
                                         <div class="swiper-pagination"></div>
                                     </div>
                                 </div>
@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             el: tile.querySelector('.swiper-pagination'),
                             clickable: true,
                         },
+                        initialSlide: 2, // Start from the last slide (index 2)
                     });
 
                     return tile;

@@ -459,7 +459,6 @@ img:hover {
     position: relative; /* Ensure the arrows are positioned relative to this container */
     width: 100%; /* Ensure the container takes the full width */
     height: 100%; /* Ensure the container takes the full height */
-    overflow: hidden; /* Hide slides that are not active */
 }
 
 /* Individual slide, hide all except the active one */

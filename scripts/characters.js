@@ -15,8 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const clickedElement = event.target;
         const tile = clickedElement.closest('.tile');
         const clickedInsideContainer = clickedElement.closest('.container');
+        const clickedInsideTile = clickedElement.closest('.tile');
 
-        if (tile) {
+        // If the clicked element is inside a tile (and not inside its container), toggle container
+        if (tile && !clickedInsideContainer) {
             const tileContainer = tile.querySelector('.container');
             const isOpen = tileContainer.classList.contains('show');
 
@@ -24,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 // If the container is not open, open it and close others
                 tileContainer.classList.add('show');
                 hideAllContainersExcept(tile);
-            } else {
-                // If the container is already open, do nothing on click inside
             }
-        } else if (!clickedInsideContainer) {
-            // Close all containers if the click is outside any container
+            // If it's already open, we do nothing here when clicking the tile itself
+        } 
+        // If the click happens outside any container, close all containers
+        else if (!clickedInsideContainer && !clickedInsideTile) {
             const tiles = document.querySelectorAll('.tile');
             tiles.forEach(tile => {
                 tile.querySelector('.container').classList.remove('show');

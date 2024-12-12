@@ -454,19 +454,36 @@ img:hover {
     z-index: 3;
 }
 
+/* Ensure that the swiper container takes up space */
 .swiper-container {
     width: 100%;
+    height: 100%;
     position: relative;
 }
 
-.swiper-button-next, .swiper-button-prev {
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
+/* Hide overflowed images, so only one image appears at a time */
+.swiper-wrapper {
+    display: flex;
+    overflow: hidden;
 }
 
+/* Ensure slides are aligned horizontally */
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%; /* Adjust the width depending on how you want the images to fit */
+}
+
+/* Style the navigation arrows */
+.swiper-button-next, .swiper-button-prev {
+    color: white;
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    transform: translateY(-50%);
+    font-size: 24px;
+}
+
+/* Position the next and previous buttons */
 .swiper-button-next {
     right: 10px;
 }
@@ -474,6 +491,16 @@ img:hover {
 .swiper-button-prev {
     left: 10px;
 }
+
+/* Style pagination dots */
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+    z-index: 10;
+}
+
 
 
 /* Responsive Media Queries */

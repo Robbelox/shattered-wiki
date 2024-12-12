@@ -505,6 +505,10 @@ img:hover {
         grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
     }
 
+    .small-tile {
+        max-width: 40%;
+    }
+
     .big-tile {
         min-height: 40vw;
         min-width: 40vw;

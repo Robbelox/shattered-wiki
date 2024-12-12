@@ -454,6 +454,52 @@ img:hover {
     z-index: 3;
 }
 
+/* Container holding the slides */
+.body-slides {
+    position: relative; /* Ensure the arrows are positioned relative to this container */
+    width: 100%; /* Ensure the container takes the full width */
+    height: 100%; /* Ensure the container takes the full height */
+    overflow: hidden; /* Hide slides that are not active */
+}
+
+/* Individual slide, hide all except the active one */
+.body-slide {
+    display: none; /* Initially hide all slides */
+    position: absolute; /* Stack slides on top of each other */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure image fits within the container */
+}
+
+/* Class to show the active slide */
+.body-slide.show {
+    display: block; /* Show the active slide */
+}
+
+/* Arrows container for positioning */
+.swiper-navigation {
+    position: absolute;
+    top: 50%; /* Vertically center the arrows */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%); /* Correct vertical centering */
+}
+
+/* Individual arrow positioning */
+.swiper-button-prev, .swiper-button-next {
+    font-size: 3rem; /* Set the size of the emojis */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    padding: 0.5rem; /* Add some padding around the emoji */
+}
+
+/* Optional: Hover effect for better user interaction */
+.swiper-button-prev:hover, .swiper-button-next:hover {
+    opacity: 0.7; /* Slight opacity change on hover */
+}
+
 /* Responsive Media Queries */
 @media (max-width: 650px) {
     .selection-container {

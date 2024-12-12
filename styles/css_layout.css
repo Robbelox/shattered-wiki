@@ -454,6 +454,28 @@ img:hover {
     z-index: 3;
 }
 
+.swiper-container {
+    width: 100%;
+    position: relative;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.swiper-button-next {
+    right: 10px;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+
+
 /* Responsive Media Queries */
 @media (max-width: 650px) {
     .selection-container {

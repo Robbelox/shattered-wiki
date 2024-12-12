@@ -90,9 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     const nationClass = primaryNation.replace(/\s+/g, '-').toLowerCase();
                     tile.classList.add('tile', 'small-tile', nationClass);
 
-                    // Create Swiper container for Body and Skin links
+                    // Create content for Body and Skin links
                     const bodySlides = BodyLinks.map((bodyLink, index) => `
-                        <div class="swiper-slide">
+                        <div class="body-slide">
                             <a href="${SkinLinks[index] || '#'}" target="_blank">
                                 <img src="${bodyLink}" alt="Character Skin">
                             </a>
@@ -105,14 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="container">
                             <div class="info">
                                 <div class="fullbody">
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper">
-                                            ${bodySlides}
-                                        </div>
-                                        <!-- Swiper buttons for navigation -->
-                                        <div class="swiper-button-next">▶️</div>
-                                        <div class="swiper-button-prev">◀️</div>
-                                        <div class="swiper-pagination"></div>
+                                    <div class="body-slides">
+                                        ${bodySlides}
                                     </div>
                                 </div>
                                 <div class="info-text">
@@ -133,21 +127,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     `;
-
-                    // Initialize Swiper after the HTML content is inserted
-                    const swiper = new Swiper(tile.querySelector('.swiper-container'), {
-                        loop: true, // Allow looping through the skins
-                        slidesPerView: 1, // Show only one slide at a time
-                        navigation: {
-                            nextEl: tile.querySelector('.swiper-button-next'),
-                            prevEl: tile.querySelector('.swiper-button-prev'),
-                        },
-                        pagination: {
-                            el: tile.querySelector('.swiper-pagination'),
-                            clickable: true,
-                        },
-                        initialSlide: 2, // Start from the last slide (index 2)
-                    });
 
                     return tile;
                 }

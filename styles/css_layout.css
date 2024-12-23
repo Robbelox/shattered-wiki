@@ -77,8 +77,8 @@ p {
 .screen {
     display: flex;
     width: 100%;
-    height: calc(100vh - 95px);
-    margin-top: 95px;
+    height: calc(100vh - 100px);
+    margin-top: 90px;
     justify-items: center;
     justify-content: center;
     align-items: flex-start;

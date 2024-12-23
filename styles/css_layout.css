@@ -61,7 +61,7 @@ p {
 
 /* Header */
 .header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -87,8 +87,8 @@ p {
 .screen2 {
     display: flex;
     width: 100%;
-    height: calc(100vh - 95px);
-    margin-top: 95px;
+    height: calc(100vh -100px);
+    margin-top: 90px;
     justify-items: center;
     align-items: center;
     flex-direction: column;

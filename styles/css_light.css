@@ -8,6 +8,10 @@ form input[type="submit"] {
     background: rgb(199, 163, 125);
 }
 
+.dropdown-content {
+    background: rgb(199, 163, 125);
+}
+
 a {
     color: rgb(63, 63, 63);
 }

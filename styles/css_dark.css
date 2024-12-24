@@ -11,6 +11,10 @@ p {
     color: antiquewhite;
 }
 
+header>h1 {
+    color: white;
+}
+
 h1,
 .container>.tile-text {
     color: rgb(245, 209, 161);
@@ -25,11 +29,10 @@ h3 {
     color: rgb(255, 220, 175);
 }
 
-.header,
-.header>div>h1,
-form input[type="submit"] {
+.header {
     background: rgb(30, 30, 30);
     color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0);
 }
 
 .dropdown-content {

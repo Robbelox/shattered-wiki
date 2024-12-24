@@ -3,13 +3,17 @@ body {
     color: rgb(63, 63, 63);
 }
 
-.header,
-form input[type="submit"] {
+.header {
     background: rgb(199, 163, 125);
+    box-shadow: 0 4px 15px rgba(0, 0, 0);
 }
 
 .dropdown-content {
     background: rgb(199, 163, 125);
+}
+
+h1 {
+    color: rgb(38, 38, 38);
 }
 
 a {

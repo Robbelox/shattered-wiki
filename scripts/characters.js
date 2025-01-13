@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     function showSlide(index) {
                         // Hide all slides
-                        slides.forEach((slide, i) => {
+                        slides.forEach(slide => {
                             slide.classList.remove('show');
                         });
                         // Show the current slide

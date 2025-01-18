@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="../">
+    <script src="scripts/mode.js"></script>
+    <script src="scripts/character-info.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki | Lore | Magic</title>
+    <link rel="icon" type="image/x-icon" href="images/logo_sr.png">
+    <link rel="stylesheet" href="styles/css_layout.css">
+    <link id="theme-link" rel="stylesheet" href="styles/css_dark.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="index.html">
+            <div class="logo"><img src="images/logo_sr.png"></div>
+        </a>
+        <div>
+            <h1>Shattered Wiki | Magic</h1>
+            <nav>
+                <ul>
+                    <a style="color: orange;" href="main-pages/lore.html">Lore</a>
+                    <div class="dropdown">
+                        <li class="dropdown-toggle">Ayka</li>
+                        <div class="dropdown-content">
+                            <a href="main-pages/shattered-world.html">Shattered World</a>
+                            <a href="main-pages/shattered-realms.html">Shattered Realms</a>
+                            <a href="main-pages/shattered-crown.html">Shattered Crown</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li class="dropdown-toggle">Verdan</li>
+                        <div class="dropdown-content">
+                            <a href="main-pages/shattered-world-two.html">Shattered World Season 2</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li class="dropdown-toggle">Iteria</li>
+                        <div class="dropdown-content">
+                            <a href="main-pages/tales-of-iteria.html">Tales of Iteria</a>
+                        </div>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+        <a class="super-large-font dropdown-toggle" href="main-pages/add.html">+</a>
+    </div>
+
+    <button class="mode-toggle" onclick="toggleDarkMode()">
+        🌙
+    </button>
+
+    </div>
+
+    <!--Page under here-->
+
+    <style>
+        p {
+            font-size: 16px
+        }
+
+        .description {
+            height: 60vh;
+        }
+    </style>
+
+    <div class="screen" style="align-items: center;">
+        <div class="selection-container holder" style="padding: 50px 0;">
+            <div class="tile small-tile">
+                <div class="large-font tile-text">Alchemy</div>
+                <img src="images/bottle.png" alt="">
+                <div class="container">
+                    <div class="large-font tile-text">Alchemy</div>
+                    <div class="description">
+                        <p>The art of using materials, mundane or magical, in order to concoct brews for a variety of
+                            effects. This is most frequently seen through potions, and can be applied to a target
+                            through
+                            digestion, injection, or contact.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tile small-tile">
+                <div class="large-font tile-text">Enchantment</div>
+                <img src="images/enchanting-table.png" alt="">
+                <div class="container">
+                    <div class="large-font tile-text">Enchantment</div>
+                    <div class="description">
+                        <p>Relying on ancient runes (base galactic) of unknown origin, Enchantment can infuse objects,
+                            tools, and weapons either through directly carving specific rune combinations onto the
+                            surface of the object, or by transferring the power of a rune combo onto it. Runes must be
+                            extremely specific, and even the smallest error in their writing can render the enchantment
+                            dysfunctional. Books can be an excellent form of storage for specific combinations of runes
+                            to later be grafted to their final target.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tile small-tile">
+                <div class="large-font tile-text" style="top: 45%">Inherent</div>
+                <div class="container">
+                    <div class="large-font tile-text">Inherent</div>
+                    <div class="description">
+                        <p>The most ambigeous form of magic, little is known about it. It is thought magic that requires
+                            no specific ingredients or source falls into this category, such as portals, the
+                            Shatterings, and the Culling.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tile small-tile">
+                <div class="large-font tile-text">Sorcery</div>
+                <img src="images/wand.png" alt="">
+                <div class="container">
+                    <div class="large-font tile-text">Sorcery</div>
+                    <div class="description">
+                        <p>A form of magic lost to time, with little to no modern practitioners. It said they were
+                            capable of casting 'spells' without the aid of enchantment or alchemy, though the validity
+                            of these tales are extremely unreliable. It is said those who practiced were the first to
+                            travel the dimensions, and constructed not only the ancient strongholds and their dormant
+                            portals to the End, but the original gateway connecting Ayka and Verdan. They supposedly
+                            died out centuries before the first Shattering.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tile small-tile">
+                <div class="large-font tile-text" style="top: 45%">Void Magic</div>
+                <div class="container">
+                    <div class="large-font tile-text">Void Magic</div>
+                    <div class="description">
+                        <p>A little known form of magic, undiscovered as its own classification by humanity. It is not
+                            native to Ayka and Verdan, and only found among the mindless Ender. It is extremely
+                            dangerous.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tile small-tile">
+                <div class="large-font tile-text">Redstone</div>
+                <img src="images/redstone.png" alt="">
+                <div class="container">
+                    <div class="large-font tile-text">Redstone</div>
+                    <div class="description">
+                        <h1>
+                            About
+                        </h1>
+                        <p>A naturally occurring material that is inherently magically charged. Unlike electricity, it's
+                            charge can
+                            be maintained by passively absorbing faint magical energies in the environment. It can be
+                            toxic if
+                            ingested in large quantities, but in smaller amounts has been used as a strong spice on
+                            foods and in
+                            drinks.</p>
+
+                        <h1>Electricity</h1>
+                        <p>Despite misconceptions, electricity and redstone are almost entirely unrelated. Redstone is
+                            capable of
+                            holding a brief electrical charge, however it is extremely inefficient at conducting
+                            electricity.</p>
+
+                        <h1>Sickness</h1>
+                        <p>It is not uncommon for those who often work with redstone in enclosed spaces to inhale it. If
+                            not
+                            properly prevented or treated, these redstone particles can clump and re-crystalize,
+                            creating
+                            long-lasting respiratory issues. In severe cases, this can lead to death.</p>
+
+                        <h1>Alchemy Uses</h1>
+                        <p>When used in brewing potions, redstone powder is known to extend the duration of the
+                            concoction. This is
+                            done by acting as a form of magical sponge, absorbing the effect of the brew, and releasing
+                            that effect
+                            over a longer period of time as the body metabolizes the dust.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -4,12 +4,14 @@
 <head>
     <base href="/">
     <script src="scripts/mode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shattered Wiki</title>
+    <title>Wiki | SR | Characters</title>
     <link rel="icon" type="image/x-icon" href="images/logo_sr.png">
     <link rel="stylesheet" href="styles/css_layout.css">
     <link id="theme-link" rel="stylesheet" href="styles/css_dark.css">
+    <link rel="stylesheet" href="styles/css_nations.css">
 </head>
 
 <body>
@@ -20,17 +22,17 @@
         🌙
     </button>
 
-    </div>
 
     <!--Page under here-->
 
     <div class="screen">
-        <div class="holder" style="display: flex; align-items: center;">
-            <img class="rotate no-zoom" src="images/Shattered Timeline.png">
+        <div class="screen-holder" style="width: 100%;">
+            <div class="selection-container holder" id="selection-container" style="padding: 50px 0;">
+            </div>
         </div>
     </div>
 
 </body>
-
+<script src="scripts/characters.js"></script>
 
 </html>

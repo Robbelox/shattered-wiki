@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 tileContainer.classList.add('show');
                 hideAllContainersExcept(tile); // Hide all other containers
             }
-        } 
+        }
         // If the click is outside any container, close all containers
         else if (!clickedInsideContainer) {
             const tiles = document.querySelectorAll('.tile');
@@ -55,15 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
                 } else {
                     const pathname = window.location.pathname;
-                    if (pathname.includes('characters-sw.html')) {
+                    if (pathname.includes('season-1')) {
                         filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered World 1'));
-                    } else if (pathname.includes('characters-sw2.html')) {
+                    } else if (pathname.includes('season-2')) {
                         filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered World 2'));
-                    } else if (pathname.includes('characters-sr.html')) {
+                    } else if (pathname.includes('season-3')) {
                         filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered Realms'));
-                    } else if (pathname.includes('characters-sc.html')) {
+                    } else if (pathname.includes('season-4')) {
                         filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Shattered Crown'));
-                    } else if (pathname.includes('characters-iteria.html')) {
+                    } else if (pathname.includes('tales-of-iteria')) {
                         filteredData = data.filter(entry => entry['Server'] && entry['Server'].includes('Tales of Iteria'));
                     }
                 }

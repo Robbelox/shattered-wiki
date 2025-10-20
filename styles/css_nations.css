@@ -118,7 +118,8 @@
     outline-color: #3498DB;
 }
 
-.sect-of-the-fallen-one, .shadowhoods {
+.sect-of-the-fallen-one,
+.shadowhoods {
     outline-color: #546E7A;
 }
 
@@ -148,4 +149,152 @@
 
 .\.deity\. {
     outline-color: #ffffff;
+}
+
+/* Nation grid & flag display tweaks */
+.selection-container.nation-grid {
+    display: grid;
+    gap: 1.25rem;
+    align-items: start;
+    justify-items: space-evenly;
+    padding: 1.5rem 0;
+    margin: 0 auto;
+    max-width: 1200px;
+    /* center and constrain the grid */
+    grid-auto-flow: dense;
+    /* helps fill gaps */
+    justify-content: center;
+}
+
+.selection-container.nation-grid .tile {
+    outline: none;
+    /* remove boxed outline so flags can show freely */
+    background: transparent;
+    padding: 0.25rem;
+    aspect-ratio: unset;
+    min-height: auto;
+}
+
+.selection-container.nation-grid .tile .tile-text {
+    position: static;
+    margin-bottom: 0.5rem;
+    transform: none;
+}
+
+.selection-container.nation-grid a {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.selection-container.nation-grid a {
+    background: transparent;
+    box-shadow: none;
+}
+
+.selection-container.nation-grid img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    border-radius: 6px;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.selection-container.nation-grid .tile img {
+    max-width: 20rem;
+}
+
+/* limit banner height so tall banners don't dominate the row */
+.selection-container.nation-grid img {
+    max-height: 36vh;
+}
+
+/* Bastærnia / combined nation handling: two sub-flags side-by-side */
+.selection-container.nation-grid .long-tile .sub-flags {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+}
+
+.selection-container.nation-grid .long-tile .sub-flag {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.selection-container.nation-grid .long-tile .sub-flag img {
+    width: 100%;
+    height: auto;
+    max-height: 36vh;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.selection-container.nation-grid .tile:hover img {
+    transform: translateY(-4px) scale(1.03);
+}
+
+/* Prevent long tiles from forcing weird spans in the nation-grid so rows stay balanced */
+.selection-container.nation-grid .long-tile {
+    grid-column: span 2;
+}
+
+/* ensure captions remain readable on top of flags if present */
+.selection-container.nation-grid .tile .tile-text {
+    color: inherit;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Balanced grid column counts at several breakpoints */
+/* Special handling for Season 1's grid layout */
+.selection-container.season-1-grid {
+    max-width: 1500px;
+}
+
+@media (min-width: 1200px) {
+    .selection-container.nation-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .selection-container.season-1-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    .selection-container.nation-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+    .selection-container.nation-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 599px) {
+    .selection-container.nation-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    /* Reset long-tile span on mobile */
+    .selection-container.nation-grid .long-tile {
+        grid-column: span 1;
+    }
+
+    /* Adjust sub-flags layout for better mobile display */
+    .selection-container.nation-grid .long-tile .sub-flags {
+        flex-direction: column;
+    }
+
+    .selection-container.nation-grid .long-tile .sub-flag {
+        margin-bottom: 1rem;
+    }
 }

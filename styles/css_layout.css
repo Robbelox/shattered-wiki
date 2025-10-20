@@ -12,15 +12,25 @@ html::-webkit-scrollbar {
 }
 
 .header h1,
-.header ul {
+.header h1 {
     margin: 0;
     padding: 0;
 }
 
-ul {
-    list-style: none;
+/* Navigation: replace ul/li structure with flex-based .main-nav */
+.main-nav {
     display: flex;
     gap: 1em;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+}
+
+.main-nav .nav-link {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    color: inherit;
+    white-space: nowrap;
 }
 
 p {
@@ -30,6 +40,14 @@ p {
     -moz-text-align-last: center;
     text-align-last: center;
     font-size: larger;
+}
+
+@media (max-width: 650px) {
+    p {
+        font-size: medium;
+        line-height: 1.5;
+        padding: 0 1rem;
+    }
 }
 
 .big-font {
@@ -65,33 +83,36 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 90px;
+    min-height: 70px;
     height: fit-content;
     display: grid;
-    grid-template-columns: 6.5em 9fr 1fr;
+    grid-template-columns: auto 1fr;
     cursor: default;
     align-items: center;
     z-index: 10;
+    padding: 0.5rem;
 }
 
 .screen {
     display: flex;
     width: 100%;
-    height: calc(100vh - 100px);
-    margin-top: 90px;
+    min-height: calc(100vh - 70px);
+    margin-top: 70px;
     justify-items: center;
     justify-content: center;
     align-items: flex-start;
+    padding: 1rem;
 }
 
 .screen2 {
     display: flex;
     width: 100%;
-    height: calc(100vh - 100px);
-    margin-top: 90px;
+    min-height: calc(100vh - 70px);
+    margin-top: 70px;
     justify-items: center;
     align-items: center;
     flex-direction: column;
+    padding: 1rem;
 }
 
 .screen-holder {
@@ -114,6 +135,7 @@ p {
 
 .dropdown {
     position: relative;
+    position: relative;
     text-align: center;
 }
 
@@ -121,9 +143,11 @@ p {
     display: none;
     position: absolute;
     min-width: 160px;
+    max-width: 90vw;
     z-index: 20;
     left: 50%;
     transform: translateX(-50%);
+    overflow: hidden;
 }
 
 .dropdown-content a {
@@ -456,50 +480,142 @@ img:hover {
 
 /* Container holding the slides */
 .body-slides {
-    position: relative; /* Ensure the arrows are positioned relative to this container */
-    width: 100%; /* Ensure the container takes the full width */
-    height: 100%; /* Ensure the container takes the full height */
+    position: relative;
+    /* Ensure the arrows are positioned relative to this container */
+    width: 100%;
+    /* Ensure the container takes the full width */
+    height: 100%;
+    /* Ensure the container takes the full height */
 }
 
 /* Individual slide, hide all except the active one */
 .body-slide {
-    display: none; /* Initially hide all slides */
-    position: absolute; /* Stack slides on top of each other */
+    display: none;
+    /* Initially hide all slides */
+    position: absolute;
+    /* Stack slides on top of each other */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ensure image fits within the container */
+    object-fit: contain;
+    /* Ensure image fits within the container */
 }
 
 /* Class to show the active slide */
 .body-slide.show {
-    display: block; /* Show the active slide */
+    display: block;
+    /* Show the active slide */
 }
 
 /* Arrows container for positioning */
 .swiper-navigation {
     position: absolute;
-    top: 50%; /* Vertically center the arrows */
+    top: 50%;
+    /* Vertically center the arrows */
     width: 40%;
     display: flex;
     justify-content: space-between;
-    transform: translateY(-50%); /* Correct vertical centering */
+    transform: translateY(-50%);
+    /* Correct vertical centering */
 }
 
 /* Individual arrow positioning */
-.swiper-button-prev, .swiper-button-next {
-    cursor: pointer; /* Pointer cursor for interactivity */
-    padding: 0.5rem; /* Add some padding around the emoji */
+.swiper-button-prev,
+.swiper-button-next {
+    cursor: pointer;
+    /* Pointer cursor for interactivity */
+    padding: 0.5rem;
+    /* Add some padding around the emoji */
 }
 
 /* Optional: Hover effect for better user interaction */
-.swiper-button-prev:hover, .swiper-button-next:hover {
-    opacity: 0.7; /* Slight opacity change on hover */
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    opacity: 0.7;
+    /* Slight opacity change on hover */
 }
 
 /* Responsive Media Queries */
+@media (max-width: 1024px) {
+    .selection-container {
+        grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));
+    }
+
+    .text-box {
+        width: 70%;
+    }
+
+    .big-tile {
+        min-height: 30vw;
+        min-width: 30vw;
+    }
+
+    .long-tile {
+        min-height: 30vw;
+        min-width: 60vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .selection-container {
+        grid-template-columns: repeat(auto-fit, minmax(35vw, 1fr));
+    }
+
+    .text-box {
+        width: 75%;
+    }
+
+    .header {
+        grid-template-columns: auto 1fr;
+        padding: 0.25rem;
+    }
+
+    .main-nav {
+        gap: 0.5em;
+        justify-content: flex-start;
+        padding: 0.25rem;
+    }
+
+    .brand h1 {
+        font-size: 1.5rem;
+    }
+
+    .dropdown-content {
+        max-width: 80vw;
+    }
+
+    .big-tile {
+        min-height: 35vw;
+        min-width: 35vw;
+    }
+
+    .long-tile {
+        min-height: 35vw;
+        min-width: 70vw;
+    }
+}
+
 @media (max-width: 650px) {
+
+    /* Improved header layout for mobile */
+    .header {
+        grid-template-columns: 4.5em 1fr auto;
+        min-height: 70px;
+    }
+
+    .logo>img {
+        height: 60px;
+        width: 60px;
+        margin: 0 0.25em;
+    }
+
+    /* Adjust nav spacing */
+    .main-nav {
+        gap: 0.5em;
+    }
+
+    /* Grid adjustments */
     .selection-container {
         grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
     }
@@ -523,10 +639,55 @@ img:hover {
     }
 
     .text-box {
-        width: 80%;
+        width: 90%;
+        padding: 0 1rem;
     }
 
     .rotate {
         transform: scale(190%) rotate(90deg);
+    }
+
+    /* Improved info section layout for mobile */
+    .info,
+    .info2 {
+        margin: 10px;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .info-text {
+        padding: 1rem;
+    }
+
+    .info-text div {
+        font-size: 16px;
+    }
+
+    /* Adjust double column layout for mobile */
+    .double-column {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Adjust description text for better mobile readability */
+    .description {
+        margin: 10px;
+        font-size: 14px;
+        height: 180px;
+    }
+
+    /* Improve button spacing on mobile */
+    .mode-toggle,
+    .world-download,
+    .pack-download {
+        bottom: 10px;
+    }
+
+    .world-download {
+        right: 60px;
+    }
+
+    .pack-download {
+        right: 100px;
     }
 }

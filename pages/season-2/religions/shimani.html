@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="/">
+    <script src="scripts/mode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki | Lore | Shimani</title>
+    <link rel="icon" type="image/x-icon" href="images/logo_sw2.png">
+    <link rel="stylesheet" href="styles/css_layout.css">
+    <link id="theme-link" rel="stylesheet" href="styles/css_dark.css">
+</head>
+
+<body>
+    <div class="header"></div>
+    <script src="scripts/header.js"></script>
+
+    <button class="mode-toggle" onclick="toggleDarkMode()">
+        🌙
+    </button>
+
+    <!--Page under here-->
+    <div class="screen2">
+
+        <div class="text-box">
+        </div>
+
+        <h1>
+            Members
+        </h1>
+
+        <div class="screen-holder" style="width: 100%;">
+            <div class="selection-container holder" id="selection-container" style="padding: 50px 0;">
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    // Define the names of the characters to load
+    const selectedCharacterNames = [
+        "Kaito",
+        "Sagishi",
+        "Atai",
+        "Shao-kan"
+    ];
+</script>
+
+<script src="scripts/characters.js"></script>
+
+</html>

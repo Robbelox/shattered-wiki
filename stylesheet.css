@@ -10,6 +10,8 @@
     --c6: #b0f6ff;
     --c7: #ffa8b4;
 
+    --missing: #877786;
+
     --bg1: #1e1916;
     --bg2: #261f1a;
     --bg3: #423129;
@@ -105,8 +107,12 @@ a {
     color: var(--c1);
 }
 
-p>a {
-    color: var(--c7);
+p > a {
+  color: var(--missing);
+}
+
+p > a.link-exists {
+  color: var(--c7);
 }
 
 a:hover {
@@ -116,6 +122,11 @@ a:hover {
 
 img {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+a img.img-missing {
+  filter: grayscale(100%) brightness(70%);
+  opacity: 0.7;
 }
 
 hr {

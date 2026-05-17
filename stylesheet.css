@@ -11,12 +11,14 @@
     --c7: #ffa8b4;
 
     --missing: #877786;
+    --break: #302720;
 
     --bg1: #1e1916;
     --bg2: #261f1a;
     --bg3: #423129;
 
     --text: #e8ccb6;
+    --text2: #ebaa74;
 
     --red: #ff757f;
     --yellow: #fad779;
@@ -130,8 +132,8 @@ a img.img-missing {
 }
 
 hr {
-    margin: 1em 0;
-    border: 2px solid var(--bg2);
+    margin: 1em -2em;
+    border: 3px solid var(--break);
 }
 
 .green {
@@ -139,7 +141,7 @@ hr {
 }
 
 b {
-    color: var(--c6);
+    color: var(--text2);
 }
 
 /* Layout containers */

@@ -132,8 +132,16 @@ a img.img-missing {
 }
 
 hr {
-    margin: 1em -2em;
-    border: 3px solid var(--break);
+    margin: 0.5em -2em;
+    border: 5px solid var(--break);
+}
+
+.thick{
+    border: 10px solid var(--break);
+}
+
+.dashed {
+    border: 3px dashed var(--break);
 }
 
 .green {
@@ -163,10 +171,27 @@ b {
     max-height: 100vh;
     margin-left: 5em;
     margin-right: 2em;
-    padding: 2em 2em 2em 2em;
-    padding-top: 0;
+    padding: 0 2em;
     background-color: var(--bg3);
     overflow-y: auto;
+}
+
+.column-two {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}
+
+.column-three {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+
+.column-four {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
 }
 
 /* Header internal */
@@ -325,6 +350,18 @@ b {
 
     .flex-item {
         width: 50%;
+    }
+
+    .column-two {
+        display: block;
+    }
+
+    .column-three {
+        display: block;
+    }
+
+    .column-four {
+        display: block;
     }
 
     /* Body fills remaining space */

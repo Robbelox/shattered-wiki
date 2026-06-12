@@ -14,7 +14,7 @@ const { createDbWorker } = sqljsHttpVfs;
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const DB_URL = "db/wiki.db";
+const DB_URL = "wiki.db.png";
 const WORKER_URL = "sqlite.worker.js";
 const WASM_URL = "sql-wasm.wasm";
 const DEFAULT_PAGE = "home";
@@ -494,6 +494,15 @@ async function validateLinks(container) {
 async function renderPage(slug) {
     const bodyEl = document.getElementById("body");
     bodyEl.innerHTML = "<p>Loading…</p>";
+
+    // Guard against race conditions if navigation happens before the DB is fully ready
+    if (!db) {
+        bodyEl.innerHTML = `
+            <h1>Initializing Wiki</h1>
+            <p>Please wait a moment while the knowledge base initializes...</p>
+        `;
+        return;
+    }
 
     const page = await queryPage(slug);
 

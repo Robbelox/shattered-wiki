@@ -14,19 +14,19 @@ const { createDbWorker } = sqljsHttpVfs;
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const DB_URL        = "db/wiki.db";
-const WORKER_URL    = "https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sqlite.worker.js";
-const WASM_URL      = "https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sql-wasm.wasm";
-const DEFAULT_PAGE  = "home";
+const DB_URL = "db/wiki.db";
+const WORKER_URL = "sqlite.worker.js";
+const WASM_URL = "sql-wasm.wasm";
+const DEFAULT_PAGE = "home";
 
 // Navigation links shown in the header
 const NAV_LINKS = [
-    { label: "Realms",      slug: "realms"      },
-    { label: "Seasons",     slug: "seasons"     },
-    { label: "Nations",     slug: "nations"     },
-    { label: "Characters",  slug: "characters"  },
-    { label: "Players",     slug: "players"     },
-    { label: "Mechanics",   slug: "mechanics"   },
+    { label: "Realms", slug: "realms" },
+    { label: "Seasons", slug: "seasons" },
+    { label: "Nations", slug: "nations" },
+    { label: "Characters", slug: "characters" },
+    { label: "Players", slug: "players" },
+    { label: "Mechanics", slug: "mechanics" },
 ];
 
 
@@ -36,7 +36,16 @@ let db = null;
 
 async function openDatabase() {
     const worker = await createDbWorker(
-        [{ from: "jsonconfig", configUrl: DB_URL }],
+        [
+            {
+                from: "inline",
+                config: {
+                    serverMode: "full",     // Tells it to use HTTP Range requests
+                    requestChunkSize: 4096,    // Reads the DB in lightweight 4KB pages
+                    url: DB_URL                // Points to "db/wiki.db"
+                }
+            }
+        ],
         WORKER_URL,
         WASM_URL
     );
@@ -90,7 +99,7 @@ function buildNavLinks() {
 
 function renderHeader(showcase = "") {
     const header = document.getElementById("header");
-    const nav    = buildNavLinks();
+    const nav = buildNavLinks();
 
     if (mq.matches) {
         header.innerHTML = `
@@ -134,11 +143,11 @@ mq.addEventListener("change", () => {
 /**
  * parseYaml(text)
  * Minimal YAML parser for flat key: value pairs and simple lists.
- * Handles the front matter we defined for character/nation pages.
+ * Handles the front matter we defined for character pages.
  */
 function parseYaml(text) {
     const result = {};
-    const lines  = text.split("\n");
+    const lines = text.split("\n");
     let i = 0;
 
     while (i < lines.length) {
@@ -147,7 +156,7 @@ function parseYaml(text) {
 
         if (!keyMatch) { i++; continue; }
 
-        const key   = keyMatch[1];
+        const key = keyMatch[1];
         const value = keyMatch[2].trim();
 
         // Indented list following an empty value
@@ -205,7 +214,7 @@ function resolveWikiLinks(text) {
  * Handles: headings, bold, separators, fences, images, paragraphs.
  */
 function parseMarkdown(text) {
-    const lines  = text.split("\n");
+    const lines = text.split("\n");
     const output = [];
     let i = 0;
 
@@ -216,7 +225,7 @@ function parseMarkdown(text) {
         // Custom fence blocks ::: type
         if (trimmed.startsWith(":::")) {
             const fenceType = trimmed.slice(3).trim();   // e.g. "columns-3" or "flex"
-            const content   = [];
+            const content = [];
             i++;
             while (i < lines.length && !lines[i].trim().startsWith(":::")) {
                 content.push(lines[i]);
@@ -229,15 +238,33 @@ function parseMarkdown(text) {
 
         // Separators
         if (trimmed === "===") { output.push('<hr class="thick">'); i++; continue; }
-        if (trimmed === "---") { output.push("<hr>");               i++; continue; }
+        if (trimmed === "---") { output.push("<hr>"); i++; continue; }
         if (trimmed === "- - -") { output.push('<hr class="dashed">'); i++; continue; }
 
-        // Headings
-        if (trimmed.startsWith("# "))  { output.push(`<h1>${inline(trimmed.slice(2))}</h1>`);  i++; continue; }
-        if (trimmed.startsWith("## ")) { output.push(`<h2>${inline(trimmed.slice(3))}</h2>`);  i++; continue; }
-        if (trimmed.startsWith("### ")){ output.push(`<h3>${inline(trimmed.slice(4))}</h3>`);  i++; continue; }
-        if (trimmed.startsWith("#### ")){ output.push(`<h4>${inline(trimmed.slice(5))}</h4>`); i++; continue; }
-        if (trimmed.startsWith("##### ")){ output.push(`<h5>${inline(trimmed.slice(6))}</h5>`); i++; continue; }
+        // Headings (Supports custom Icon Banners dynamically across H1-H6)
+        const headingMatch = trimmed.match(/^(#{1,6})\s+(.*)$/);
+        if (headingMatch) {
+            const level = headingMatch[1].length; // Counts # symbols to get 1, 2, 3, etc.
+            const tagName = `h${level}`;          // Generates h1, h2, h3, etc.
+            const headerContent = headingMatch[2].trim();
+
+            // Checks if the heading starts with markdown image syntax: ![alt](url)
+            const imgMatch = headerContent.match(/^!\[([^\]]*)\]\(([^)]+)\)\s*(.*)$/);
+
+            if (imgMatch) {
+                const [_, altText, imgUrl, headingText] = imgMatch;
+                output.push(`
+                    <div class="icon">
+                        <img src="${imgUrl}" alt="${altText}">
+                        <${tagName}>${inline(headingText.trim())}</${tagName}>
+                    </div>`.trim());
+            } else {
+                // Fallback for regular headings without an icon banner
+                output.push(`<${tagName}>${inline(headerContent)}</${tagName}>`);
+            }
+            i++;
+            continue;
+        }
 
         // Blank line
         if (trimmed === "") { i++; continue; }
@@ -283,44 +310,62 @@ function inline(text) {
         .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
 }
 
-/**
- * renderFence(type, content)
- * Expands ::: fence blocks into the appropriate div structure.
- * Handles specialized card syntax for flex layouts.
- */
 function renderFence(type, content) {
-    if (type === "flex") {
+    // Split the fence type by spaces to capture arguments (e.g., "flex big")
+    const args = type.trim().split(/\s+/);
+    const baseType = args[0];
+
+    if (baseType === "flex") {
+        // Check if "big" is specified in the arguments, otherwise default to "small"
+        const sizeClass = args.includes("big") ? "big" : "small";
+
         const lines = content.split("\n").map(l => l.trim()).filter(Boolean);
-        
+
         const itemsHtml = lines.map(line => {
-            // Target syntax: [[slug]] ![alt](image_url) Label Text
+            // Match sequential structure: [[slug]] followed by ![alt](img) followed by Text label
             const match = line.match(/^\[\[([^\]]+)\]\]\s*!\[([^\]]*)\]\(([^)]+)\)\s*(.*)$/);
-            
+
             if (match) {
-                const [_, slug, alt, imgUrl, label] = match;
+                const slug = match[1].trim();
+                const altText = match[2].trim();
+                const imgUrl = match[3].trim();
+                const labelText = match[4].trim();
+
+                // Build image component
+                const imgHtml = `<img src="${imgUrl}" alt="${altText}">`;
+
+                // Handle sub-labels with parentheses if present like "Name (Sub)"
+                let textHtml = "";
+                if (labelText) {
+                    const parenMatch = labelText.match(/^([^(]+)(\([^)]+\))$/);
+                    if (parenMatch) {
+                        textHtml = `<div>${inline(parenMatch[1].trim())}</div><div>${inline(parenMatch[2].trim())}</div>`;
+                    } else {
+                        textHtml = `<div>${inline(labelText)}</div>`;
+                    }
+                }
+
+                // Generates the dynamic card structure using your size class variable
                 return `
-                    <a class="flex-item link-missing" data-wiki-slug="${slug.trim()}">
-                        <img src="${imgUrl}" alt="${alt}">
-                        <span>${inline(label.trim())}</span>
+                    <a class="flex-item ${sizeClass} center link-missing" data-wiki-slug="${slug}">
+                        ${imgHtml}
+                        ${textHtml}
                     </a>`.trim();
             }
-            
-            // Fallback for plain text or standard markdown lines inside a flex block
+
+            // Normal text block fallback path
             return `<div class="flex-item">${inline(line)}</div>`;
         }).join("\n");
 
         return `<div class="flex">${itemsHtml}</div>`;
     }
 
-    // Standard markdown rendering for column grids or unknown fences
+    // Grid columns fallback processing logic
     const inner = parseMarkdown(content.trim());
-
-    if (type.startsWith("columns-")) {
-        const n = type.split("-")[1];   // "2", "3", or "4"
+    if (baseType.startsWith("columns-")) {
+        const n = baseType.split("-")[1];
         return `<div class="column-${n === "2" ? "two" : n === "3" ? "three" : "four"}">${inner}</div>`;
     }
-
-    // Unknown fence: render as a plain div with the type as a class
     return `<div class="${type}">${inner}</div>`;
 }
 
@@ -334,7 +379,6 @@ function renderFence(type, content) {
  */
 function renderInfobox(type, meta) {
     if (type === "characters") return renderCharacterInfobox(meta);
-    if (type === "nations")    return renderNationInfobox(meta);
     return "";
 }
 
@@ -404,26 +448,6 @@ function renderCharacterInfobox(m) {
     </div>`;
 }
 
-function renderNationInfobox(m) {
-    // To be expanded when we have nation pages to work from
-    return `
-    <div class="column-two">
-        <div>
-            ${infoField("Type", m.nation_type)}
-            ${infoField("Realm", m.realm)}
-            ${infoField("Season", m.season)}
-            ${infoField("Capital", m.capital)}
-            ${infoField("Leader", m.leader)}
-        </div>
-        <div>
-            ${infoField("Founded", m.founded)}
-            ${infoField("Dissolved", m.dissolved)}
-            ${infoField("Religion", m.religion)}
-            ${infoField("Allies", m.allies)}
-        </div>
-    </div>`;
-}
-
 
 // ── Link validation ───────────────────────────────────────────────────────────
 
@@ -445,7 +469,7 @@ async function validateLinks(container) {
 
     links.forEach(link => {
         const exists = existsMap[link.dataset.wikiSlug];
-        link.classList.toggle("link-exists",  exists);
+        link.classList.toggle("link-exists", exists);
         link.classList.toggle("link-missing", !exists);
 
         // Wire up navigation for existing links
@@ -475,14 +499,14 @@ async function renderPage(slug) {
 
     if (!page) {
         bodyEl.innerHTML = `<h1>Page not found</h1><p>No page with slug <b>${slug}</b> exists yet.</p>`;
-        document.title = "Not found — Shattered Wiki";
+        document.title = "Shattered Wiki | Not Found";
         return;
     }
 
     const { meta, body } = parseFrontMatter(page.content);
 
     // Update page title
-    document.title = `${page.title} — Shattered Wiki`;
+    document.title = `Shattered Wiki | ${page.title}`;
 
     // Update showcase image in header if the page defines one
     const showcase = document.getElementById("showcase");

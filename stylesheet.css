@@ -109,17 +109,22 @@ a {
     color: var(--c1);
 }
 
-p > a {
-  color: var(--missing);
+/* Global Wiki Link Verification Colors */
+.link-missing, a.link-missing>div, 
+a.link-missing {
+    color: var(--missing);
+    text-align: center;
 }
 
-p > a.link-exists {
-  color: var(--c7);
+.link-exists, a.link-exists>div, 
+a.link-exists {
+    color: var(--c7);
 }
 
-a:hover {
+a.link-exists:hover, .navigation-option:hover {
     scale: 0.90;
     filter: brightness(150%) saturate(150%);
+    cursor: pointer;
 }
 
 img {

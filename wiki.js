@@ -194,6 +194,15 @@ function parseFrontMatter(content) {
 }
 
 /**
+ * normalizeSlug(raw)
+ * Lowercases a slug and replaces spaces with dashes so that
+ * [[My Page]] and [[my page]] both resolve to "my-page".
+ */
+function normalizeSlug(raw) {
+    return raw.trim().toLowerCase().replace(/ /g, "-");
+}
+
+/**
  * resolveWikiLinks(text)
  * Converts [[slug]] and [[slug|display text]] into <a> tags.
  * Links are marked data-wiki-slug for later validation.
@@ -201,10 +210,10 @@ function parseFrontMatter(content) {
 function resolveWikiLinks(text) {
     return text
         .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, (_, slug, label) =>
-            `<a class="link-missing" data-wiki-slug="${slug.trim()}">${label.trim()}</a>`
+            `<a class="link-missing" data-wiki-slug="${normalizeSlug(slug)}">${label.trim()}</a>`
         )
         .replace(/\[\[([^\]]+)\]\]/g, (_, slug) =>
-            `<a class="link-missing" data-wiki-slug="${slug.trim()}">${slug.trim()}</a>`
+            `<a class="link-missing" data-wiki-slug="${normalizeSlug(slug)}">${slug.trim()}</a>`
         );
 }
 
@@ -301,10 +310,10 @@ function inline(text) {
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
         // Wiki links
         .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, (_, slug, label) =>
-            `<a class="link-missing" data-wiki-slug="${slug.trim()}">${label.trim()}</a>`
+            `<a class="link-missing" data-wiki-slug="${normalizeSlug(slug)}">${label.trim()}</a>`
         )
         .replace(/\[\[([^\]]+)\]\]/g, (_, slug) =>
-            `<a class="link-missing" data-wiki-slug="${slug.trim()}">${slug.trim()}</a>`
+            `<a class="link-missing" data-wiki-slug="${normalizeSlug(slug)}">${slug.trim()}</a>`
         )
         // Bold
         .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
@@ -326,7 +335,7 @@ function renderFence(type, content) {
             const match = line.match(/^\[\[([^\]]+)\]\]\s*!\[([^\]]*)\]\(([^)]+)\)\s*(.*)$/);
 
             if (match) {
-                const slug = match[1].trim();
+                const slug = normalizeSlug(match[1]);
                 const altText = match[2].trim();
                 const imgUrl = match[3].trim();
                 const labelText = match[4].trim();

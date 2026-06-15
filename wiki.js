@@ -477,17 +477,20 @@ async function validateLinks(container) {
     const existsMap = Object.fromEntries(results);
 
     links.forEach(link => {
-        const exists = existsMap[link.dataset.wikiSlug];
+        const slug = link.dataset.wikiSlug;
+        const exists = existsMap[slug];
         link.classList.toggle("link-exists", exists);
         link.classList.toggle("link-missing", !exists);
 
-        // Wire up navigation for existing links
-        if (exists) {
-            link.addEventListener("click", (e) => {
-                e.preventDefault();
-                navigateTo(link.dataset.wikiSlug);
-            });
-        }
+        // Set a real href so the browser treats this as a proper link:
+        // right-click → open in new tab, middle-click, hover URL in status bar, etc.
+        link.href = slug === DEFAULT_PAGE ? "/" : `/?page=${slug}`;
+
+        // Intercept normal left-clicks for SPA navigation (no full page reload)
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            navigateTo(slug);
+        });
 
         // Image treatment
         const img = link.querySelector("img");

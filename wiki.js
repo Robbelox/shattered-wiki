@@ -171,8 +171,9 @@ function parseYaml(text) {
             continue;
         }
 
-        // Quoted string
-        result[key] = value.replace(/^["']|["']$/g, "");
+        // Quoted string — also interpret escape sequences (e.g. \n → newline)
+        const unquoted = value.replace(/^["']|["']$/g, "");
+        result[key] = unquoted.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
         i++;
     }
 
@@ -185,8 +186,11 @@ function parseYaml(text) {
  * meta is parsed YAML; body is the remaining Markdown.
  */
 function parseFrontMatter(content) {
-    const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-    if (!match) return { meta: {}, body: content };
+    // Normalise Windows-style line endings so the regex works regardless of
+    // how the content was saved or retrieved from the database.
+    const normalised = content.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+    const match = normalised.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+    if (!match) return { meta: {}, body: normalised };
     return {
         meta: parseYaml(match[1]),
         body: match[2],
@@ -316,7 +320,9 @@ function inline(text) {
             `<a class="link-missing" data-wiki-slug="${normalizeSlug(slug)}">${slug.trim()}</a>`
         )
         // Bold
-        .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+        .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")
+        // Newlines (e.g. from \n in YAML values) → line breaks
+        .replace(/\n/g, "<br>");
 }
 
 function renderFence(type, content) {
@@ -545,7 +551,7 @@ async function renderPage(slug) {
         <hr class="thick">
         <hr>
         ${content.includes("<h1>") ? "" : `<h1>${page.title}</h1>`}
-        ${infobox ? `<h2>Basic Information</h2><hr>${infobox}` : ""}
+        ${infobox ? `<h2>Basic Information</h2>${infobox}<hr class="thick"><hr>` : ""}
         ${content}
     `;
 
